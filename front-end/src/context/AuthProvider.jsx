@@ -24,6 +24,7 @@ export function AuthProvider({ children }) {
         if (data.success) {
           setIsLoggedIn(true);
           setUser(data.user);
+          console.log(data.user);
           // Redirect to the last location if available
           const lastLocation = localStorage.getItem("lastLocation");
           if (lastLocation) {

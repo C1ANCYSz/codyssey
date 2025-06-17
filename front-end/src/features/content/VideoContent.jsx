@@ -58,7 +58,7 @@ function AddVideosForm({ stage, updateStageContent }) {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 20 }}
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-footer-900/50 flex grow flex-col items-center gap-4 overflow-hidden rounded-xl p-6 backdrop-blur-sm"
+      className="flex h-fit grow flex-col items-center gap-4 overflow-hidden rounded-xl bg-gray-800/40 p-6 backdrop-blur-sm"
     >
       <h3 className="text-2xl font-semibold">{t("add_videos")}</h3>
       <AnimatePresence>
@@ -413,7 +413,7 @@ function VideoContent() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="from-footer-900 to-footer-800 min-h-screen bg-gradient-to-b"
+      className="min-h-screen bg-gradient-to-b from-gray-900 to-black"
     >
       <div className="overflow-y-auto px-6 py-6 text-white">
         <motion.div
@@ -425,7 +425,7 @@ function VideoContent() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate(`/roadmaps/${roadmapId}`)}
-            className="bg-footer-900/70 hover:bg-primary-600 flex cursor-pointer items-center gap-2 rounded-full px-4 py-2 text-lg transition-all duration-300"
+            className="hover:bg-primary-600 flex cursor-pointer items-center gap-2 rounded-full bg-gray-800/40 px-4 py-2 text-lg transition-all duration-300"
           >
             <FaArrowLeft />
             <span className="font-bold capitalize">{t("back_to_roadmap")}</span>
@@ -579,7 +579,7 @@ function VideoContent() {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="bg-footer-900/70 flex-1 rounded-xl p-6 backdrop-blur-sm"
+                className="flex-1 rounded-xl bg-gray-800/40 p-6 backdrop-blur-sm"
               >
                 <h3 className="border-b border-gray-700 pb-4 text-center text-4xl font-semibold tracking-wider">
                   {t("playlist")}

@@ -120,7 +120,6 @@ function VerifyEmail() {
             })}
           </div>
 
-          {/* Error message */}
           {Object.keys(errors).length > 0 && (
             <p className="text-sm text-red-500">{t("fill_all_fields_valid")}</p>
           )}

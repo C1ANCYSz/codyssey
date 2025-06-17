@@ -45,7 +45,7 @@ function AddRoadmap() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="container max-w-4xl rounded-2xl border border-white/10 bg-white/5 p-8 shadow-2xl"
+        className="container max-w-3xl rounded-2xl border border-white/10 bg-white/5 p-8 shadow-2xl"
       >
         <h1 className="mb-8 text-center text-3xl font-bold text-white">
           {t("create_new_roadmap")}
@@ -53,28 +53,6 @@ function AddRoadmap() {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
           <div className="flex flex-col gap-8 md:flex-row">
-            <div className="flex flex-col items-center space-y-4">
-              <div className="group relative">
-                <img
-                  src={previewImage}
-                  alt={t("roadmap_preview")}
-                  className="h-48 w-48 rounded-xl object-cover shadow-lg transition-transform group-hover:scale-105"
-                />
-                <label className="absolute inset-0 flex cursor-pointer items-center justify-center rounded-xl bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
-                  <FaImage className="text-3xl text-white" />
-                  <input
-                    type="file"
-                    className="hidden"
-                    onChange={handleImageUpload}
-                    accept="image/*"
-                  />
-                </label>
-              </div>
-              <span className="text-sm text-gray-400">
-                {t("click_to_upload_image")}
-              </span>
-            </div>
-
             <div className="flex-1 space-y-6">
               <div>
                 {newCategory ? (

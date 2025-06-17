@@ -9,7 +9,7 @@ function AppLayout() {
     return (
       <div className="from-primary-900 flex h-screen overflow-hidden bg-gradient-to-br to-black">
         <Sidebar user={user} />
-        <div className="from-primary-900 flex-1 overflow-y-auto bg-gradient-to-br to-black">
+        <div className="flex-1 overflow-y-auto bg-gradient-to-br from-gray-900 to-black">
           <Outlet />
         </div>
       </div>
