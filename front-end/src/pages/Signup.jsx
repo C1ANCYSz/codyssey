@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSignup } from "../hooks/auth/useSignup";
 import { FaCode, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "../context/TranslationContext";
 
 function Signup() {
   const {
@@ -16,6 +17,9 @@ function Signup() {
 
   const { signup, isLoading, error } = useSignup();
 
+  // استخدم دالة الترجمة t من السياق
+  const { t } = useTranslation();
+
   const onSubmit = (data) => {
     signup(data);
   };
@@ -28,10 +32,12 @@ function Signup() {
           <div className="from-primary-600 hidden bg-gradient-to-br to-indigo-900 p-12 text-white lg:flex lg:w-5/12">
             <div className="flex h-full flex-col justify-between">
               <div className="space-y-6">
-                <h2 className="text-3xl font-bold">Join our community</h2>
+                <h2 className="text-3xl font-bold">
+                  {t("join_our_community") || "Join our community"}
+                </h2>
                 <p className="text-violet-200">
-                  Create an account and unlock exclusive features designed for
-                  you.
+                  {t("signup_left_description") ||
+                    "Create an account and unlock exclusive features designed for you."}
                 </p>
               </div>
               <div className="ml-auto">
@@ -44,10 +50,11 @@ function Signup() {
           <div className="w-full p-6 sm:p-10 lg:w-7/12">
             <div className="mb-8">
               <h1 className="bg-gradient-to-r from-violet-600 to-pink-600 bg-clip-text text-3xl font-bold text-transparent">
-                Create Account
+                {t("create_account")}
               </h1>
               <p className="mt-2 text-gray-500">
-                Join us and start your journey
+                {t("signup_hero_description") ||
+                  "Join us and start your journey"}
               </p>
             </div>
 
@@ -58,21 +65,23 @@ function Signup() {
                   htmlFor="name"
                   className="mb-2 block text-sm font-medium text-gray-700"
                 >
-                  Full Name
+                  {t("full_name") || "Full Name"}
                 </label>
                 <input
                   id="name"
                   name="name"
                   type="text"
-                  placeholder="Enter your name"
+                  placeholder={t("enter_your_name") || "Enter your name"}
                   className={`w-full rounded-lg border ${
                     errors.name ? "border-red-400" : "border-gray-300"
                   } px-4 py-3 transition-colors focus:border-violet-500 focus:ring-2 focus:ring-violet-200 focus:outline-none`}
                   {...register("name", {
-                    required: "Name is required",
+                    required: t("name_required") || "Name is required",
                     minLength: {
                       value: 3,
-                      message: "Name must be at least 3 characters long",
+                      message:
+                        t("name_min_length") ||
+                        "Name must be at least 3 characters long",
                     },
                   })}
                 />
@@ -89,18 +98,18 @@ function Signup() {
                   htmlFor="email"
                   className="mb-2 block text-sm font-medium text-gray-700"
                 >
-                  Email Address
+                  {t("email_address") || "Email Address"}
                 </label>
                 <input
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="name@example.com"
+                  placeholder={t("your_email") || "name@example.com"}
                   className={`w-full rounded-lg border ${
                     errors.email ? "border-red-400" : "border-gray-300"
                   } px-4 py-3 transition-colors focus:border-violet-500 focus:ring-2 focus:ring-violet-200 focus:outline-none`}
                   {...register("email", {
-                    required: "Email is required",
+                    required: t("email_required") || "Email is required",
                   })}
                 />
                 {errors.email?.message && (
@@ -116,22 +125,27 @@ function Signup() {
                   htmlFor="password"
                   className="mb-2 block text-sm font-medium text-gray-700"
                 >
-                  Password
+                  {t("your_password") || "Password"}
                 </label>
                 <div className="relative">
                   <input
                     id="password"
                     name="password"
                     type={showPassword ? "text" : "password"}
-                    placeholder="At least 8 characters"
+                    placeholder={
+                      t("password_min_length") || "At least 8 characters"
+                    }
                     className={`w-full rounded-lg border ${
                       errors.password ? "border-red-400" : "border-gray-300"
                     } px-4 py-3 pr-12 transition-colors focus:border-violet-500 focus:ring-2 focus:ring-violet-200 focus:outline-none`}
                     {...register("password", {
-                      required: "Password is required",
+                      required:
+                        t("password_required") || "Password is required",
                       minLength: {
                         value: 8,
-                        message: "Password must be at least 8 characters long",
+                        message:
+                          t("password_min_length") ||
+                          "Password must be at least 8 characters long",
                       },
                     })}
                   />
@@ -140,7 +154,9 @@ function Signup() {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-gray-700"
                     aria-label={
-                      showPassword ? "Hide password" : "Show password"
+                      showPassword
+                        ? t("hide_password") || "Hide password"
+                        : t("show_password") || "Show password"
                     }
                   >
                     {showPassword ? (
@@ -163,23 +179,28 @@ function Signup() {
                   htmlFor="confirmPassword"
                   className="mb-2 block text-sm font-medium text-gray-700"
                 >
-                  Confirm Password
+                  {t("confirm_password") || "Confirm Password"}
                 </label>
                 <div className="relative">
                   <input
                     id="confirmPassword"
                     name="confirmPassword"
                     type={showConfirm ? "text" : "password"}
-                    placeholder="Confirm your password"
+                    placeholder={
+                      t("confirm_your_password") || "Confirm your password"
+                    }
                     className={`w-full rounded-lg border ${
                       errors.confirmPassword
                         ? "border-red-400"
                         : "border-gray-300"
                     } px-4 py-3 pr-12 transition-colors focus:border-violet-500 focus:ring-2 focus:ring-violet-200 focus:outline-none`}
                     {...register("confirmPassword", {
-                      required: "Please confirm your password",
+                      required:
+                        t("confirm_password_required") ||
+                        "Please confirm your password",
                       validate: (value) =>
                         value === getValues("password") ||
+                        t("passwords_do_not_match") ||
                         "Passwords do not match",
                     })}
                   />
@@ -187,7 +208,11 @@ function Signup() {
                     type="button"
                     onClick={() => setShowConfirm(!showConfirm)}
                     className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                    aria-label={showConfirm ? "Hide password" : "Show password"}
+                    aria-label={
+                      showConfirm
+                        ? t("hide_password") || "Hide password"
+                        : t("show_password") || "Show password"
+                    }
                   >
                     {showConfirm ? (
                       <FaEyeSlash className="h-5 w-5" />
@@ -231,22 +256,22 @@ function Signup() {
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                       ></path>
                     </svg>
-                    Creating Account...
+                    {t("creating_account") || "Creating Account..."}
                   </span>
                 ) : (
-                  "Create Account"
+                  t("create_account")
                 )}
               </button>
             </form>
 
             <div className="mt-6 text-center">
               <p className="text-gray-600">
-                Already have an account?{" "}
+                {t("already_have_account") || "Already have an account?"}{" "}
                 <Link
                   to="/login"
                   className="font-medium text-violet-600 underline-offset-2 hover:text-violet-800 hover:underline"
                 >
-                  Sign in
+                  {t("sign_in") || "Sign in"}
                 </Link>
               </p>
             </div>

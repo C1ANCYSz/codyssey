@@ -5,8 +5,10 @@ import { useGetAppointments } from "../hooks/user/useGetAppointments";
 import { useDeleteAppointment } from "../hooks/user/useDeleteAppointment";
 import { MdCancel } from "react-icons/md";
 import { useState } from "react";
+import { useTranslation } from "../context/TranslationContext";
 
 function Appointments() {
+  const { t } = useTranslation();
   const { appointments, isLoading } = useGetAppointments();
   const { deleteAppointment, isLoading: isDeleting } = useDeleteAppointment();
   const [selectedAppointments, setSelectedAppointments] = useState("all");
@@ -42,38 +44,38 @@ function Appointments() {
     <div className="min-h-screen p-8">
       <div className="mb-12 flex items-center justify-between">
         <h1 className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-4xl font-bold tracking-tight text-transparent">
-          My Appointments
+          {t("my_appointments")}
         </h1>
         <div className="flex gap-4 text-white">
           <button
             className={`cursor-pointer rounded-full px-4 py-2 text-sm font-medium text-white capitalize transition-all duration-300 ${selectedAppointments === "all" ? "bg-primary-600/50" : "bg-white/10"}`}
             onClick={() => setSelectedAppointments("all")}
           >
-            All
+            {t("all")}
           </button>
           <button
             className={`cursor-pointer rounded-full px-4 py-2 text-sm font-medium text-white capitalize transition-all duration-300 ${selectedAppointments === "completed" ? "bg-primary-600/50" : "bg-white/10"}`}
             onClick={() => setSelectedAppointments("completed")}
           >
-            completed
+            {t("completed")}
           </button>
           <button
             className={`cursor-pointer rounded-full px-4 py-2 text-sm font-medium text-white capitalize transition-all duration-300 ${selectedAppointments === "accepted" ? "bg-primary-600/50" : "bg-white/10"}`}
             onClick={() => setSelectedAppointments("accepted")}
           >
-            accepted
+            {t("accepted")}
           </button>
           <button
             className={`cursor-pointer rounded-full px-4 py-2 text-sm font-medium text-white capitalize transition-all duration-300 ${selectedAppointments === "pending" ? "bg-primary-600/50" : "bg-white/10"}`}
             onClick={() => setSelectedAppointments("pending")}
           >
-            pending
+            {t("pending")}
           </button>
           <button
             className={`cursor-pointer rounded-full px-4 py-2 text-sm font-medium text-white capitalize transition-all duration-300 ${selectedAppointments === "rejected" ? "bg-primary-600/50" : "bg-white/10"}`}
             onClick={() => setSelectedAppointments("rejected")}
           >
-            rejected
+            {t("rejected")}
           </button>
         </div>
       </div>
@@ -115,7 +117,9 @@ function Appointments() {
 
             {/* Academy Info */}
             <div className="mb-6 space-y-2">
-              <h4 className="text-sm font-medium text-gray-400">Academy</h4>
+              <h4 className="text-sm font-medium text-gray-400">
+                {t("academy")}
+              </h4>
               <p className="text-lg font-medium text-white">
                 {appointment.academy.name}
               </p>
@@ -147,7 +151,7 @@ function Appointments() {
                 <div className="mx-auto flex w-fit items-center gap-3 rounded-full bg-orange-500 px-4 py-2 text-white">
                   <FaTrophy className="text-lg" />
                   <span className="text-lg font-bold">
-                    Score: {appointment.score}%
+                    {t("score")}: {appointment.score}%
                   </span>
                 </div>
               )}
@@ -158,7 +162,7 @@ function Appointments() {
 
       {appointments.length === 0 && (
         <div className="mt-12 text-center text-lg text-gray-400">
-          No appointments found yet
+          {t("no_appointments_found")}
         </div>
       )}
     </div>

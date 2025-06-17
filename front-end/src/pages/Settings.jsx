@@ -15,8 +15,8 @@ import { useUpdateSettings } from "../hooks/user/useUpdateSettings";
 import toast from "react-hot-toast";
 import Loader from "../ui/Loader";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "../context/TranslationContext";
 
-// Settings Component / مكون الإعدادات
 function Settings() {
   const [openPasswordModal, setOpenPasswordModal] = useState(false);
   const { setUser, setIsLoggedIn } = useAuth();
@@ -27,6 +27,7 @@ function Settings() {
   const containerRef = useRef(null);
   const { updateSettings } = useUpdateSettings();
   const { name, email, phoneNumber, image, locations = [] } = settings ?? {};
+  const { t } = useTranslation();
 
   const { register, handleSubmit, getValues, reset } = useForm({
     defaultValues: { name, email, phoneNumber, image, locations },
@@ -160,16 +161,16 @@ function Settings() {
             onSubmit={handleSubmit(onSubmit, onError)}
           >
             <h1 className="text-center text-2xl font-bold text-white">
-              Confirm Your Password
+              {t("confirm_your_password")}
             </h1>
             <FormInput
               type="password"
               id="password"
-              label="Password"
+              label={t("password")}
               icon={FaLock}
             />
             <button className="bg-primary-500 rounded-lg p-3 text-white shadow-lg transition-all hover:scale-[1.02] hover:shadow-blue-500/25">
-              Confirm Changes
+              {t("confirm_changes")}
             </button>
           </form>
         </div>
@@ -177,7 +178,7 @@ function Settings() {
 
       <div className="animate-fadeIn w-full max-w-4xl rounded-2xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur-xl">
         <h1 className="from-primary-300 to-primary-600 mb-8 bg-gradient-to-r bg-clip-text text-center text-3xl font-bold text-transparent">
-          Account Settings
+          {t("account_settings")}
         </h1>
         <form
           className="flex flex-col gap-6"
@@ -185,18 +186,18 @@ function Settings() {
         >
           <FormInput
             id="name"
-            label="Name"
+            label={t("full_name")}
             defaultValue={name}
-            validation={{ required: "Name is required" }}
+            validation={{ required: t("name_required") }}
             icon={FaUser}
           />
 
           <FormInput
             type="email"
             id="email"
-            label="Email"
+            label={t("email")}
             defaultValue={email}
-            validation={{ required: "Email is required" }}
+            validation={{ required: t("email_required") }}
             icon={FaEnvelope}
           />
 
@@ -204,14 +205,14 @@ function Settings() {
             <>
               <FormInput
                 id="phoneNumber"
-                label="Phone Number"
+                label={t("phone_number")}
                 defaultValue={phoneNumber}
                 icon={FaPhone}
               />
               <FormInput
                 type="file"
                 id="image"
-                label="Profile Image"
+                label={t("profile_image")}
                 icon={FaImage}
               />
             </>
@@ -222,7 +223,9 @@ function Settings() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <FaMapMarkerAlt className="text-white/40" />
-                  <h3 className="text-lg font-medium text-white">Locations</h3>
+                  <h3 className="text-lg font-medium text-white">
+                    {t("locations")}
+                  </h3>
                 </div>
                 <button
                   type="button"
@@ -239,7 +242,7 @@ function Settings() {
                     key={index}
                     id={`locations.${index}`}
                     defaultValue={location}
-                    label={`Location ${index + 1}`}
+                    label={`${t("location")} ${index + 1}`}
                     icon={FaMapMarkerAlt}
                   />
                 ))}
@@ -248,7 +251,7 @@ function Settings() {
                   <FormInput
                     key={index}
                     id={`newLocations.${index}`}
-                    label={`New Location ${index + 1}`}
+                    label={`${t("new_location")} ${index + 1}`}
                     icon={FaMapMarkerAlt}
                   />
                 ))}
@@ -259,24 +262,24 @@ function Settings() {
           <div className="space-y-4 rounded-xl border border-white/10 bg-white/5 p-6">
             <h3 className="flex items-center gap-2 text-lg font-medium text-white">
               <FaLock className="text-white/40" />
-              Change Password
+              {t("change_password")}
             </h3>
             <div className="grid gap-4">
               <FormInput
                 type="password"
                 id="newPassword"
-                label="New Password"
+                label={t("new_password")}
                 icon={FaLock}
               />
               <FormInput
                 type="password"
                 id="confirmPassword"
-                label="Confirm Password"
+                label={t("confirm_password")}
                 icon={FaLock}
                 validation={{
                   validate: (value) =>
                     value === getValues("newPassword") ||
-                    "Passwords do not match",
+                    t("passwords_dont_match"),
                 }}
               />
             </div>
@@ -287,7 +290,7 @@ function Settings() {
           className="from-primary-600 via-primary-700 to-primary-900 mt-8 w-full rounded-lg bg-gradient-to-r p-4 text-white shadow-lg transition-all hover:scale-[1.02] hover:shadow-blue-500/25"
           onClick={() => setOpenPasswordModal(true)}
         >
-          Save Changes
+          {t("save_changes")}
         </button>
       </div>
     </div>

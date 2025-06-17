@@ -6,8 +6,11 @@ import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useState, useEffect } from "react";
+import { useTranslation } from "../context/TranslationContext";
 
 const Home = () => {
+  const { t } = useTranslation();
+
   // For animated gradient cursor effect
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -99,21 +102,12 @@ const Home = () => {
                 variants={itemVariants}
                 className="mt-4 text-4xl font-extrabold tracking-tight text-white md:text-7xl lg:text-8xl"
               >
-                Master Programming
+                {t("master_programming")}
                 <span className="relative">
                   <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                     {" "}
-                    The Right Way
+                    {t("the_right_way")}
                   </span>
-                  <motion.span
-                    className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400"
-                    animate={{ width: "100%" }}
-                    transition={{
-                      delay: 1.2,
-                      duration: 1.5,
-                      ease: "easeInOut",
-                    }}
-                  />
                 </span>
               </motion.h1>
 
@@ -121,9 +115,7 @@ const Home = () => {
                 variants={itemVariants}
                 className="mx-auto max-w-2xl text-xl font-light text-gray-300 md:text-2xl"
               >
-                Learn to code through interactive roadmaps, hands-on projects,
-                and a supportive community. Your journey to becoming a developer
-                starts here.
+                {t("home_hero_description")}
               </motion.p>
 
               <motion.div
@@ -137,7 +129,7 @@ const Home = () => {
                     className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 px-8 py-4 text-lg font-bold text-white transition-all"
                   >
                     <span className="relative z-10 flex items-center gap-2">
-                      Start Learning Now
+                      {t("start_learning_now", "Start Learning Now")}
                       <motion.span
                         animate={{ x: [0, 5, 0] }}
                         transition={{ repeat: Infinity, duration: 1.5 }}
@@ -154,7 +146,7 @@ const Home = () => {
                     whileTap={{ scale: 0.98 }}
                     className="rounded-xl border-2 border-white/30 bg-white/5 px-8 py-4 text-lg font-bold text-white backdrop-blur-lg transition-all hover:bg-white/10"
                   >
-                    View Learning Paths
+                    {t("view_learning_paths", "View Learning Paths")}
                   </motion.button>
                 </Link>
               </motion.div>
@@ -178,34 +170,42 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-center text-4xl font-bold text-white md:text-6xl"
             >
-              Why Choose Us?
+              {t("why_choose_us", "Why Choose Us?")}
             </motion.h2>
 
             <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               {[
                 {
                   icon: <TbMapRoute className="h-16 w-16" />,
-                  title: "Structured Learning",
-                  description:
+                  title: t("structured_learning", "Structured Learning"),
+                  description: t(
+                    "structured_learning_desc",
                     "Follow clear, progressive paths to master programming skills",
+                  ),
                 },
                 {
                   icon: <MdOndemandVideo className="h-16 w-16" />,
-                  title: "Interactive Content",
-                  description:
+                  title: t("interactive_content", "Interactive Content"),
+                  description: t(
+                    "interactive_content_desc",
                     "Learn through engaging videos, quizzes, and coding challenges",
+                  ),
                 },
                 {
                   icon: <FaRegUser className="h-16 w-16" />,
-                  title: "Personalized Path",
-                  description:
+                  title: t("personalized_path", "Personalized Path"),
+                  description: t(
+                    "personalized_path_desc",
                     "Learn at your own pace with customized learning tracks",
+                  ),
                 },
                 {
                   icon: <LiaChalkboardTeacherSolid className="h-16 w-16" />,
-                  title: "Expert Support",
-                  description:
+                  title: t("expert_support", "Expert Support"),
+                  description: t(
+                    "expert_support_desc",
                     "Get help from experienced developers when stuck",
+                  ),
                 },
               ].map((feature, index) => (
                 <motion.div
@@ -258,28 +258,36 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-center text-4xl font-bold text-white md:text-6xl"
             >
-              Popular Learning Tracks
+              {t("popular_learning_tracks", "Popular Learning Tracks")}
             </motion.h2>
 
             <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {[
                 {
-                  title: "Frontend Development",
-                  description:
+                  title: t("frontend_development", "Frontend Development"),
+                  description: t(
+                    "frontend_development_desc",
                     "Master modern web development with React, Vue & more",
-                  level: "Beginner Friendly",
+                  ),
+                  level: t("beginner_friendly", "Beginner Friendly"),
                   icon: "🌐",
                 },
                 {
-                  title: "Backend Development",
-                  description: "Build scalable servers & APIs with Node.js",
-                  level: "Intermediate",
+                  title: t("backend_development", "Backend Development"),
+                  description: t(
+                    "backend_development_desc",
+                    "Build scalable servers & APIs with Node.js",
+                  ),
+                  level: t("intermediate", "Intermediate"),
                   icon: "⚙️",
                 },
                 {
-                  title: "Full Stack Development",
-                  description: "Become a complete web developer",
-                  level: "Advanced",
+                  title: t("fullstack_development", "Full Stack Development"),
+                  description: t(
+                    "fullstack_development_desc",
+                    "Become a complete web developer",
+                  ),
+                  level: t("advanced", "Advanced"),
                   icon: "🚀",
                 },
               ].map((track, index) => (
@@ -308,7 +316,7 @@ const Home = () => {
                     initial={{ x: -10 }}
                     whileHover={{ x: 0 }}
                   >
-                    <span>Explore track</span>
+                    <span>{t("explore_track", "Explore track")}</span>
                     <FaArrowRight className="transition-transform group-hover:translate-x-2" />
                   </motion.div>
                 </motion.div>
@@ -333,7 +341,7 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="max-w-3xl text-center text-3xl font-bold text-white md:text-5xl"
             >
-              Ready to Begin Your Coding Journey?
+              {t("ready_to_begin", "Ready to Begin Your Coding Journey?")}
             </motion.h2>
             <motion.div
               initial={{ y: 30, opacity: 0 }}
@@ -347,7 +355,7 @@ const Home = () => {
                   className="group relative overflow-hidden rounded-full bg-white px-8 py-4 text-xl font-bold text-indigo-900 transition-all"
                 >
                   <span className="relative z-10 flex items-center gap-2">
-                    Get Started For Free
+                    {t("get_started_for_free", "Get Started For Free")}
                     <motion.span
                       animate={{ x: [0, 5, 0] }}
                       transition={{ repeat: Infinity, duration: 1.5 }}
@@ -369,7 +377,10 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-center text-white/70"
             >
-              Join 10,000+ developers who have already started their journey
+              {t(
+                "join_10000_devs",
+                "Join 10,000+ developers who have already started their journey",
+              )}
             </motion.p>
           </div>
         </motion.div>

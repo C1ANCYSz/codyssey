@@ -19,9 +19,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useDeleteStage } from "../../hooks/user/content-manager/useDeleteStage";
 import { useDeleteRoadmap } from "../../hooks/user/content-manager/useDeleteRoadmap";
 import confetti from "canvas-confetti";
+import { useTranslation } from "../../context/TranslationContext";
 
 function Roadmap() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [stageToDelete, setStageToDelete] = useState(null);
@@ -139,7 +141,7 @@ function Roadmap() {
               className="bg-footer-900 z-50 w-full max-w-md space-y-4 rounded-2xl border border-white/10 p-8 text-white shadow-2xl"
             >
               <h2 className="mb-4 bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-center text-2xl font-bold text-transparent">
-                Are you sure you want to delete this roadmap?
+                {t("are_you_sure_delete_roadmap")}
               </h2>
               <div className="flex justify-center gap-4">
                 <button
@@ -150,14 +152,14 @@ function Roadmap() {
                   }}
                   disabled={deleteRoadmapLoading}
                 >
-                  {deleteRoadmapLoading ? "Deleting..." : "Yes"}
+                  {deleteRoadmapLoading ? t("deleting") : t("yes")}
                 </button>
                 <button
                   className="from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 rounded-full bg-gradient-to-r px-6 py-2 text-sm font-semibold text-white transition-all hover:shadow-lg disabled:opacity-50"
                   onClick={() => setOpenDeleteRoadmapModal(false)}
                   disabled={deleteRoadmapLoading}
                 >
-                  {deleteRoadmapLoading ? "Cancelling..." : "No"}
+                  {deleteRoadmapLoading ? t("cancelling") : t("no")}
                 </button>
               </div>
             </motion.div>
@@ -178,7 +180,7 @@ function Roadmap() {
               className="bg-footer-900 z-50 w-full max-w-md space-y-4 rounded-2xl border border-white/10 p-8 text-white shadow-2xl"
             >
               <h2 className="mb-4 bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-center text-2xl font-bold text-transparent">
-                Are you sure you want to delete this stage?
+                {t("are_you_sure_delete_stage")}
               </h2>
               <div className="flex justify-center gap-4">
                 <button
@@ -189,14 +191,14 @@ function Roadmap() {
                   }}
                   disabled={deleteStageLoading}
                 >
-                  {deleteStageLoading ? "Deleting..." : "Yes"}
+                  {deleteStageLoading ? t("deleting") : t("yes")}
                 </button>
                 <button
                   className="from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 rounded-full bg-gradient-to-r px-6 py-2 text-sm font-semibold text-white transition-all hover:shadow-lg disabled:opacity-50"
                   onClick={() => setOpenDeleteModal(false)}
                   disabled={deleteStageLoading}
                 >
-                  {deleteStageLoading ? "Cancelling..." : "No"}
+                  {deleteStageLoading ? t("cancelling") : t("no")}
                 </button>
               </div>
             </motion.div>
@@ -219,7 +221,7 @@ function Roadmap() {
               className="bg-footer-900 z-50 w-full max-w-md space-y-4 rounded-2xl border border-white/10 p-8 text-white shadow-2xl"
             >
               <h2 className="mb-4 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-center text-2xl font-bold text-transparent">
-                Add Stage
+                {t("add_stage")}
               </h2>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div className="flex flex-col gap-2">
@@ -227,12 +229,12 @@ function Roadmap() {
                     htmlFor="title"
                     className="text-sm font-medium text-gray-300"
                   >
-                    Title
+                    {t("title")}
                   </label>
                   <input
                     type="text"
                     id="title"
-                    placeholder="Stage title"
+                    placeholder={t("stage_title")}
                     className="border-primary-600/50 bg-footer-800 focus:border-primary-600 w-full rounded-lg border-2 p-2 transition-all outline-none"
                     {...register("title", { required: true })}
                   />
@@ -242,12 +244,12 @@ function Roadmap() {
                     htmlFor="description"
                     className="text-sm font-medium text-gray-300"
                   >
-                    Description
+                    {t("description")}
                   </label>
                   <input
                     type="text"
                     id="description"
-                    placeholder="Stage description"
+                    placeholder={t("stage_description")}
                     className="border-primary-600/50 bg-footer-800 focus:border-primary-600 w-full rounded-lg border-2 p-2 transition-all outline-none"
                     {...register("description", { required: true })}
                   />
@@ -262,10 +264,10 @@ function Roadmap() {
                       value="content"
                       className="bg-footer-800 text-white"
                     >
-                      Content
+                      {t("content")}
                     </option>
                     <option value="quiz" className="bg-footer-800 text-white">
-                      Quiz
+                      {t("quiz")}
                     </option>
                   </select>
                 </div>
@@ -273,7 +275,7 @@ function Roadmap() {
                   type="submit"
                   className="from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 w-full cursor-pointer rounded-lg bg-gradient-to-r px-4 py-2 text-white transition-all duration-300 hover:shadow-lg"
                 >
-                  Add Stage
+                  {t("add_stage")}
                 </button>
               </form>
             </motion.div>
@@ -291,7 +293,7 @@ function Roadmap() {
             alt={roadmap.title}
             className="h-32 w-32 rounded-2xl object-contain shadow-2xl"
           />
-          <div className="flex-1 space-y-2 text-center md:text-left">
+          <div className="flex-1 space-y-2">
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -311,7 +313,7 @@ function Roadmap() {
                 {roadmap.category}
               </span>
               <span className="text-gray-400">
-                {roadmap.stagesCount} Stages
+                {roadmap.stagesCount} {t("stages")}
               </span>
             </div>
           </div>
@@ -331,7 +333,7 @@ function Roadmap() {
                 }}
                 disabled={enrollLoading}
               >
-                {enrollLoading ? "Enrolling..." : "Enroll"}
+                {enrollLoading ? t("enrolling") : t("enroll")}
               </motion.button>
             ) : studentData?.roadmaps.some(
                 (currentRoadmap) =>
@@ -347,7 +349,7 @@ function Roadmap() {
                 }}
               >
                 <FaCertificate className="text-lg" />
-                Get Your Certificate
+                {t("get_your_certificate")}
               </motion.button>
             ) : (
               <motion.div
@@ -360,8 +362,8 @@ function Roadmap() {
                 >
                   <FaPlay className="text-sm" />
                   {currentStage?.number > 1
-                    ? "Continue Learning"
-                    : "Start Learning"}
+                    ? t("continue_learning")
+                    : t("start_learning")}
                 </Link>
               </motion.div>
             ))}
@@ -375,7 +377,7 @@ function Roadmap() {
                 onClick={() => setOpenModal(true)}
               >
                 <FaPlus className="text-sm" />
-                Add Stage
+                {t("add_stage")}
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -384,7 +386,7 @@ function Roadmap() {
                 onClick={() => setOpenDeleteRoadmapModal(true)}
               >
                 <FaTrash className="text-sm" />
-                Delete Roadmap
+                {t("delete_roadmap")}
               </motion.button>
             </div>
           )}
@@ -398,7 +400,7 @@ function Roadmap() {
             className="from-footer-900/70 to-footer-800/70 mb-8 rounded-2xl bg-gradient-to-r p-6 backdrop-blur-sm"
           >
             <h2 className="mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-2xl font-bold text-transparent">
-              Roadmap Progress
+              {t("roadmap_progress")}
             </h2>
             <div className="bg-footer-700/50 relative h-4 w-full overflow-hidden rounded-full">
               <motion.div
@@ -455,7 +457,7 @@ function Roadmap() {
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
                     <span className="from-primary-600/20 to-primary-500/20 text-primary-400 mb-2 inline-block rounded-full bg-gradient-to-r px-3 py-1 text-sm">
-                      Stage {stage.number}
+                      {t("stage")} {stage.number}
                     </span>
                     <h3 className="mb-2 text-xl font-semibold text-white">
                       {stage.title}
@@ -500,13 +502,13 @@ function Roadmap() {
                   >
                     {completedStages >= stage.number
                       ? stage.type === "quiz"
-                        ? "Review Quiz"
-                        : "Review Content"
+                        ? t("review_quiz")
+                        : t("review_content")
                       : stage.type === "quiz"
-                        ? "Start Quiz"
+                        ? t("start_quiz")
                         : stage.number === 1
-                          ? "Start Learning"
-                          : "Continue Learning"}
+                          ? t("start_learning")
+                          : t("continue_learning")}
                   </motion.button>
                 ) : (
                   role === "content manager" && (
@@ -520,7 +522,7 @@ function Roadmap() {
                         );
                       }}
                     >
-                      Edit Stage
+                      {t("edit_stage")}
                     </motion.button>
                   )
                 )}
@@ -534,7 +536,7 @@ function Roadmap() {
                       setOpenDeleteModal(true);
                     }}
                   >
-                    Delete Stage
+                    {t("delete_stage")}
                   </motion.button>
                 )}
               </div>

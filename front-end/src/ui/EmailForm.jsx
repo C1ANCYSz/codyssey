@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { MdOutlineEmail } from "react-icons/md";
 import { useForgotPassword } from "../hooks/auth/useForgotPassword";
+import { useTranslation } from "../context/TranslationContext";
 
 function EmailForm({ setStep }) {
   const {
@@ -9,6 +10,7 @@ function EmailForm({ setStep }) {
     formState: { errors },
   } = useForm();
   const { forgotPassword, isLoading, error } = useForgotPassword();
+  const { t } = useTranslation();
 
   function onSubmit(data) {
     forgotPassword({ email: data.email, setStep });
@@ -24,11 +26,10 @@ function EmailForm({ setStep }) {
             className="h-[120px] w-auto object-cover md:h-[200px]"
           />
           <h1 className="text-2xl font-bold text-white md:text-4xl">
-            FORGOT PASSWORD
+            {t("forgot_password_title")}
           </h1>
           <p className="text-center text-base text-white md:text-2xl">
-            Provide your account&apos;s Email for which you want to reset your
-            password!
+            {t("provide_account_email")}
           </p>
         </div>
 
@@ -37,21 +38,21 @@ function EmailForm({ setStep }) {
           className="flex flex-col items-center justify-between space-y-4 rounded-b-3xl bg-white p-6 md:space-y-8 md:p-10"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="group relative flex w-full items-center gap-2 px-2 py-2 md:px-4 md:py-3">
+          <div className="group relative flex w-full items-center gap-2 rounded-md border-2 px-2">
             <input
               type="email"
-              placeholder="Email"
-              className="focus:border-primary-600 w-full rounded-md border-2 px-3 py-2.5 transition-all duration-300 outline-none md:px-4 md:py-3"
+              placeholder={t("email")}
+              className="focus:border-primary-600 w-full py-2.5 transition-all duration-300 outline-none md:px-4 md:py-3"
               {...register("email", { required: true })}
             />
-            <MdOutlineEmail className="group-focus-within:text-primary-600 absolute right-6 text-xl text-black transition-colors duration-300 md:right-8 md:text-2xl" />
+            <MdOutlineEmail className="group-focus-within:text-primary-600 text-xl text-black transition-colors duration-300 md:right-8 md:text-2xl" />
           </div>
 
           <button
             type="submit"
             className="bg-primary-600 hover:bg-primary-700 w-full cursor-pointer rounded-full px-8 py-2.5 text-sm tracking-wider text-white uppercase transition-all duration-300 md:w-auto md:px-20 md:py-3 md:text-base"
           >
-            Next
+            {t("next")}
           </button>
         </form>
       </div>

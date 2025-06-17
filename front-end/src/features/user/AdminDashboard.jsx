@@ -7,8 +7,10 @@ import { ImBooks } from "react-icons/im";
 import { PiStudentFill } from "react-icons/pi";
 import { HiMiniBuildingLibrary } from "react-icons/hi2";
 import { CiUser } from "react-icons/ci";
+import { useTranslation } from "../../context/TranslationContext";
 
 function AdminDashboard() {
+  const { t } = useTranslation();
   const { dashboardData, isLoading } = useGetAdminDashboard();
   const lineChartRef = useRef(null);
   const pieChartRef = useRef(null);
@@ -29,7 +31,7 @@ function AdminDashboard() {
           labels: dashboardData.usersPerDay.map((u) => u.date),
           datasets: [
             {
-              label: "Students Joined",
+              label: t("students_joined"),
               data: dashboardData.usersPerDay.map((u) => u.count),
               borderColor: "#6366f1", // Modern indigo
               backgroundColor: "rgba(99, 102, 241, 0.1)",
@@ -176,7 +178,7 @@ function AdminDashboard() {
       lineChartInstance.current?.destroy();
       pieChartInstance.current?.destroy();
     };
-  }, [dashboardData]);
+  }, [dashboardData, t]);
 
   if (!dashboardData) {
     return <Loader />;
@@ -184,22 +186,22 @@ function AdminDashboard() {
 
   const stats = [
     {
-      label: "Total Roadmaps",
+      label: t("total_roadmaps"),
       value: dashboardData.roadmaps,
       icon: <ImBooks className="text-blue-500" />,
     },
     {
-      label: "Content Managers",
+      label: t("content_managers"),
       value: dashboardData.contentManagers,
       icon: <FaUsers className="text-emerald-500" />,
     },
     {
-      label: "Academies",
+      label: t("academies"),
       value: dashboardData.academies,
       icon: <HiMiniBuildingLibrary className="text-indigo-500" />,
     },
     {
-      label: "Students",
+      label: t("students"),
       value: dashboardData.students,
       icon: <PiStudentFill className="text-amber-500" />,
     },
@@ -211,7 +213,7 @@ function AdminDashboard() {
         <div className="flex gap-6">
           <div className="flex-1/3 rounded-2xl bg-gray-800/40 p-6 shadow-xl backdrop-blur-sm">
             <h2 className="mb-6 text-xl font-semibold text-white/90">
-              🏆 Top Performing Roadmaps
+              {t("top_performing_roadmaps")}
             </h2>
             <div className="space-y-3 overflow-x-auto">
               {dashboardData.topRoadmaps.map((roadmap, index) => (
@@ -240,7 +242,7 @@ function AdminDashboard() {
 
           <div className="h-[450px] flex-2/3 rounded-2xl bg-gray-800/40 p-6 pb-10 shadow-xl backdrop-blur-sm">
             <h2 className="text-xl font-semibold text-white/90">
-              📈 Students Growth
+              {t("students_growth")}
             </h2>
             <div className="h-full w-full">
               <canvas ref={lineChartRef} className="h-full w-full"></canvas>
@@ -269,7 +271,7 @@ function AdminDashboard() {
 
         <div className="h-[400px] flex-1/3 grow-0 rounded-2xl bg-gray-800/40 p-6 shadow-xl backdrop-blur-sm">
           <h2 className="text-xl font-semibold text-white/90">
-            🥧 Roadmap Categories
+            {t("roadmap_categories")}
           </h2>
           <div className="h-full w-full">
             <canvas ref={pieChartRef} className="h-full w-full"></canvas>

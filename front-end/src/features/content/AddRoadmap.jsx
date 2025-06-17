@@ -4,8 +4,10 @@ import { useAddRoadmap } from "../../hooks/user/content-manager/useAddRoadmap";
 import { FaPlus, FaImage } from "react-icons/fa";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "../../context/TranslationContext";
 
 function AddRoadmap() {
+  const { t } = useTranslation();
   const { roadmaps: { categories } = {} } = useGetRoadmaps();
   const [newCategory, setNewCategory] = useState(false);
   const [previewImage, setPreviewImage] = useState(
@@ -46,7 +48,7 @@ function AddRoadmap() {
         className="container max-w-4xl rounded-2xl border border-white/10 bg-white/5 p-8 shadow-2xl"
       >
         <h1 className="mb-8 text-center text-3xl font-bold text-white">
-          Create New Roadmap
+          {t("create_new_roadmap")}
         </h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
@@ -55,7 +57,7 @@ function AddRoadmap() {
               <div className="group relative">
                 <img
                   src={previewImage}
-                  alt="Roadmap Preview"
+                  alt={t("roadmap_preview")}
                   className="h-48 w-48 rounded-xl object-cover shadow-lg transition-transform group-hover:scale-105"
                 />
                 <label className="absolute inset-0 flex cursor-pointer items-center justify-center rounded-xl bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
@@ -69,7 +71,7 @@ function AddRoadmap() {
                 </label>
               </div>
               <span className="text-sm text-gray-400">
-                Click to upload image
+                {t("click_to_upload_image")}
               </span>
             </div>
 
@@ -78,17 +80,17 @@ function AddRoadmap() {
                 {newCategory ? (
                   <input
                     type="text"
-                    placeholder="Enter new category"
+                    placeholder={t("enter_new_category")}
                     className="border-primary-600 focus:border-primary-500 w-full rounded-lg border-2 bg-white/5 p-3 text-white transition-colors outline-none"
                     {...register("category", {
-                      required: "Category is required",
+                      required: t("category_required"),
                     })}
                   />
                 ) : (
                   <select
                     className="border-primary-600 focus:border-primary-500 w-full rounded-lg border-2 bg-white/10 p-3 text-white transition-colors outline-none focus:bg-black"
                     {...register("category", {
-                      required: "Category is required",
+                      required: t("category_required"),
                     })}
                     onChange={(e) => {
                       if (e.target.value === "other") {
@@ -97,13 +99,13 @@ function AddRoadmap() {
                       }
                     }}
                   >
-                    <option value="">Select Category</option>
+                    <option value="">{t("select_category")}</option>
                     {categories?.map((category) => (
                       <option key={category} value={category}>
                         {category}
                       </option>
                     ))}
-                    <option value="other">+ Add New Category</option>
+                    <option value="other">{t("add_new_category")}</option>
                   </select>
                 )}
                 {errors.category && (
@@ -115,9 +117,9 @@ function AddRoadmap() {
 
               <input
                 type="text"
-                placeholder="Roadmap Title"
+                placeholder={t("roadmap_title")}
                 className="border-primary-600 focus:border-primary-500 w-full rounded-lg border-2 bg-white/5 p-3 text-xl text-white transition-colors outline-none"
-                {...register("title", { required: "Title is required" })}
+                {...register("title", { required: t("title_required") })}
               />
               {errors.title && (
                 <span className="text-sm text-red-500">
@@ -126,10 +128,10 @@ function AddRoadmap() {
               )}
 
               <textarea
-                placeholder="Roadmap Description"
+                placeholder={t("roadmap_description")}
                 className="border-primary-600 focus:border-primary-500 min-h-[100px] w-full rounded-lg border-2 bg-white/5 p-3 text-white transition-colors outline-none"
                 {...register("description", {
-                  required: "Description is required",
+                  required: t("description_required"),
                 })}
               />
               {errors.description && (
@@ -149,10 +151,10 @@ function AddRoadmap() {
               className="bg-primary-600 hover:bg-primary-700 flex items-center gap-2 rounded-lg px-8 py-3 font-semibold text-white transition-colors"
             >
               {isLoading ? (
-                "Creating..."
+                t("creating")
               ) : (
                 <>
-                  <FaPlus /> Create Roadmap
+                  <FaPlus /> {t("create_roadmap")}
                 </>
               )}
             </motion.button>

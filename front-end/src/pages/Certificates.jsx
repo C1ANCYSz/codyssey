@@ -4,8 +4,10 @@ import { FiDownload } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { MdOutlineScheduleSend } from "react-icons/md";
 import Loader from "../ui/Loader";
+import { useTranslation } from "../context/TranslationContext";
 
 function Certificates() {
+  const { t } = useTranslation();
   const { certificates, isLoading, error } = useGetCertificates();
 
   console.log(certificates);
@@ -14,7 +16,9 @@ function Certificates() {
   if (error) {
     return (
       <div className="flex h-screen items-center justify-center text-red-500">
-        <p>Error: {error.message}</p>
+        <p>
+          {t("error")}: {error.message}
+        </p>
       </div>
     );
   }
@@ -24,11 +28,9 @@ function Certificates() {
       <div className="flex h-screen flex-col items-center justify-center gap-4">
         <GiCancel className="text-6xl text-red-400" />
         <h2 className="text-2xl font-semibold text-gray-300">
-          No certificates yet
+          {t("no_certificates_yet")}
         </h2>
-        <p className="text-gray-400">
-          Complete roadmaps to earn your certificates
-        </p>
+        <p className="text-gray-400">{t("complete_roadmaps_to_earn")}</p>
       </div>
     );
   }
@@ -36,7 +38,7 @@ function Certificates() {
   return (
     <div className="container mx-auto p-8">
       <h1 className="mb-12 text-center text-4xl font-bold text-white">
-        My Certificates
+        {t("my_certificates")}
       </h1>
       <div className="flex flex-wrap gap-4">
         {certificates.map((certificate) => (
@@ -62,7 +64,7 @@ function Certificates() {
               className="flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-white transition-colors hover:bg-emerald-700"
             >
               <FiDownload className="text-lg" />
-              <span>Download Certificate</span>
+              <span>{t("download_certificate")}</span>
             </a>
             <Link
               to={
@@ -79,8 +81,8 @@ function Certificates() {
               <MdOutlineScheduleSend className="text-xl" />
               <span>
                 {certificate.isBooked
-                  ? "Appointment booked"
-                  : "Make an appointment"}
+                  ? t("appointment_booked")
+                  : t("make_an_appointment")}
               </span>
             </Link>
           </div>
