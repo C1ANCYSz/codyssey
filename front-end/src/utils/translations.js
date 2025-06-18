@@ -529,6 +529,24 @@ about_value3_desc: "Connect with fellow learners and mentors (coming soon).",
 
 about_team_heading: "Our Team",
 about_team_paragraph: "We are a passionate team of developers, educators, and designers committed to building the best e-learning experience. We believe in the power of education to transform lives.",
+
+// Contact Us Page (new additions)
+contact_us_title: "Contact Us",
+contact_introduction_paragraph: "We'd love to hear from you! Whether you have a question, feedback, or need support, please don't hesitate to reach out. Choose the most relevant contact method below.",
+
+contact_general_inquiries_heading: "General Inquiries",
+contact_general_inquiries_paragraph: "For general questions about Codyssey, partnerships, or media inquiries:",
+contact_technical_support_heading: "Technical Support",
+contact_technical_support_paragraph: "If you're experiencing technical issues with the platform or need help with your account:",
+contact_partnerships_heading: "Partnerships & Collaborations",
+contact_partnerships_paragraph: "For business proposals, academic collaborations, or other partnership opportunities:",
+contact_email_label: "Email", // Reusable for email links
+
+contact_social_media_heading: "Connect With Us",
+contact_social_media_paragraph: "Follow us on social media to stay updated with the latest news, features, and programming tips:",
+contact_facebook: "Facebook",
+contact_twitter: "Twitter",
+contact_linkedin: "LinkedIn",
   },
 
   ar: {
@@ -1055,5 +1073,23 @@ about_value3_desc: "تواصل مع المتعلمين والمرشدين الآ
 
 about_team_heading: "فريقنا",
 about_team_paragraph: "نحن فريق متحمس من المطورين والمعلمين والمصممين ملتزمون ببناء أفضل تجربة تعليم إلكتروني. نحن نؤمن بقوة التعليم في تغيير الحياة.",
+
+// Contact Us Page (new additions)
+contact_us_title: "تواصل معنا",
+contact_introduction_paragraph: "يسعدنا أن نسمع منك! سواء كان لديك سؤال أو ملاحظات أو تحتاج إلى دعم، يرجى عدم التردد في التواصل. اختر طريقة الاتصال الأكثر صلة أدناه.",
+
+contact_general_inquiries_heading: "استفسارات عامة",
+contact_general_inquiries_paragraph: "للاستفسارات العامة حول كوديسي، أو الشراكات، أو استفسارات وسائل الإعلام:",
+contact_technical_support_heading: "الدعم الفني",
+contact_technical_support_paragraph: "إذا كنت تواجه مشاكل فنية في المنصة أو تحتاج إلى مساعدة بشأن حسابك:",
+contact_partnerships_heading: "الشراكات والتعاون",
+contact_partnerships_paragraph: "للمقترحات التجارية، أو التعاون الأكاديمي، أو فرص الشراكة الأخرى:",
+contact_email_label: "البريد الإلكتروني",
+
+contact_social_media_heading: "تواصل معنا عبر وسائل التواصل",
+contact_social_media_paragraph: "تابعنا على وسائل التواصل الاجتماعي للبقاء على اطلاع بآخر الأخبار والميزات ونصائح البرمجة:",
+contact_facebook: "فيسبوك",
+contact_twitter: "تويتر",
+contact_linkedin: "لينكد إن",
   },
 };
