@@ -505,6 +505,30 @@ privacy_changes_paragraph: "We may update our Privacy Policy from time to time. 
 
 privacy_contact_heading: "Contact Us",
 privacy_contact_paragraph: "If you have any questions about this Privacy Policy, please contact us at privacy@codyssey.com.",
+
+// About Us Page (new additions)
+about_us_title: "About Us",
+
+about_story_heading: "Our Story",
+about_story_paragraph1: "Codyssey was born from a simple idea: make quality programming education accessible and tailored for everyone. We noticed that many aspiring developers struggled with overwhelming information and a lack of clear direction.",
+about_story_paragraph2: "We set out to create a platform that not only provides comprehensive learning paths but also adapts to individual goals, making the journey from beginner to professional smoother and more engaging.",
+
+about_mission_heading: "Our Mission",
+about_mission_paragraph: "Our mission is to empower individuals worldwide to achieve their programming dreams by providing personalized, effective, and supportive learning experiences.",
+
+about_vision_heading: "Our Vision",
+about_vision_paragraph: "We envision a future where anyone, regardless of their background or location, can acquire the in-demand tech skills needed to thrive in the digital economy.",
+
+about_why_choose_heading: "Why Choose Codyssey?",
+about_value1_title: "Personalized Roadmaps",
+about_value1_desc: "Learning paths are customized to your specific career goals.",
+about_value2_title: "Interactive Learning",
+about_value2_desc: "Engage with quizzes, mini-projects, and expert sessions.",
+about_value3_title: "Community Support",
+about_value3_desc: "Connect with fellow learners and mentors (coming soon).",
+
+about_team_heading: "Our Team",
+about_team_paragraph: "We are a passionate team of developers, educators, and designers committed to building the best e-learning experience. We believe in the power of education to transform lives.",
   },
 
   ar: {
@@ -1007,5 +1031,29 @@ privacy_changes_paragraph: "قد نقوم بتحديث سياسة الخصوصي
 
 privacy_contact_heading: "اتصل بنا",
 privacy_contact_paragraph: "إذا كان لديك أي أسئلة حول سياسة الخصوصية هذه، يرجى الاتصال بنا على privacy@codyssey.com.",
+
+// About Us Page (new additions)
+about_us_title: "من نحن",
+
+about_story_heading: "قصتنا",
+about_story_paragraph1: "ولدت كوديسي من فكرة بسيطة: جعل تعليم البرمجة عالي الجودة متاحًا ومخصصًا للجميع. لاحظنا أن العديد من المطورين الطموحين كانوا يعانون من وفرة المعلومات وعدم وجود توجيه واضح.",
+about_story_paragraph2: "شرعنا في إنشاء منصة لا توفر فقط مسارات تعليمية شاملة ولكنها تتكيف أيضًا مع الأهداف الفردية، مما يجعل الرحلة من المبتدئ إلى المحترف أكثر سلاسة وجاذبية.",
+
+about_mission_heading: "مهمتنا",
+about_mission_paragraph: "مهمتنا هي تمكين الأفراد في جميع أنحاء العالم من تحقيق أحلامهم في البرمجة من خلال توفير تجارب تعليمية مخصصة وفعالة وداعمة.",
+
+about_vision_heading: "رؤيتنا",
+about_vision_paragraph: "نتصور مستقبلاً حيث يمكن لأي شخص، بغض النظر عن خلفيته أو موقعه، اكتساب المهارات التقنية المطلوبة للنمو في الاقتصاد الرقمي.",
+
+about_why_choose_heading: "لماذا تختار كوديسي؟",
+about_value1_title: "خرائط طريق مخصصة",
+about_value1_desc: "يتم تخصيص مسارات التعلم لأهدافك المهنية المحددة.",
+about_value2_title: "تعلم تفاعلي",
+about_value2_desc: "شارك في الاختبارات والمشاريع الصغيرة وجلسات الخبراء.",
+about_value3_title: "دعم المجتمع",
+about_value3_desc: "تواصل مع المتعلمين والمرشدين الآخرين (قريباً).",
+
+about_team_heading: "فريقنا",
+about_team_paragraph: "نحن فريق متحمس من المطورين والمعلمين والمصممين ملتزمون ببناء أفضل تجربة تعليم إلكتروني. نحن نؤمن بقوة التعليم في تغيير الحياة.",
   },
 };

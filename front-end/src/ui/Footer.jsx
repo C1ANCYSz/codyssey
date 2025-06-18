@@ -30,7 +30,6 @@ function Footer() {
 
   const quickLinks = [
     { text: t("about"), to: "/about" },
-    { text: t("become_instructor"), to: "/become-instructor" },
     { text: t("contact_us"), to: "/contact" },
     { text: t("signup"), to: "/signup" },
   ];
