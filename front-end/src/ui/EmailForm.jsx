@@ -16,10 +16,10 @@ function EmailForm({ setStep }) {
     forgotPassword({ email: data.email, setStep });
   }
   return (
-    <div className="via-primary-600 flex min-h-dvh w-full items-center justify-center bg-gradient-to-br from-blue-950 to-blue-950 p-4 text-center lg:min-h-[calc(100dvh-80px)]">
-      <div className="flex w-full max-w-md flex-col rounded-3xl bg-gradient-to-r from-purple-800 to-purple-600 p-1 md:max-w-2xl">
+    <div className="from-primary-800 flex min-h-dvh w-full items-center justify-center bg-gradient-to-br to-black p-4 text-center lg:min-h-[calc(100dvh-80px)]">
+      <div className="flex w-full max-w-md flex-col rounded-3xl bg-gray-900/40 p-1 md:max-w-2xl">
         {/* Top Section */}
-        <div className="flex flex-col items-center justify-center space-y-4 rounded-2xl bg-gradient-to-br from-purple-600 to-purple-800 p-6 md:space-y-6 md:p-8">
+        <div className="flex flex-col items-center justify-center space-y-4 rounded-2xl bg-gray-900/40 p-6 md:space-y-6 md:p-8">
           <img
             src="/src/assets/images/locker.png"
             alt="locker"

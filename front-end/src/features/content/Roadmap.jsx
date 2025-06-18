@@ -125,7 +125,7 @@ function Roadmap() {
   if (isLoading || userLoading) return <Loader />;
 
   return (
-    <div className="from-primary-900 font-body min-h-screen bg-gradient-to-br to-black">
+    <div className="font-body min-h-screen bg-gradient-to-br from-gray-900 to-black">
       <AnimatePresence>
         {openDeleteRoadmapModal && (
           <motion.div
