@@ -386,6 +386,36 @@ export const translations = {
     location_summary: "Location Summary",
     top_performing_locations: "Top Performing Locations",
     students: "students",
+
+    // Help Center Page
+    help_center: "Help Center",
+    what_is_codyssey: "What is Codyssey?",
+    codyssey_description: "Codyssey is a personalized e-learning platform for aspiring programmers. It provides structured roadmaps, learning modules, and interactive features to help users learn programming effectively and efficiently.",
+
+    how_platform_works: "How the Platform Works",
+    custom_roadmaps: "Custom Roadmaps",
+    custom_roadmaps_desc: "After signing up, users select their goals (e.g., become a frontend developer), and Codyssey generates a roadmap tailored to them.",
+    step_by_step_modules: "Step-by-step Modules",
+    step_by_step_modules_desc: "Each roadmap is divided into clear, actionable modules that include lessons, exercises, and resources.",
+    progress_tracking: "Progress Tracking",
+    progress_tracking_desc: "The dashboard allows users to monitor their learning progress and stay motivated.",
+    quizzes_projects: "Quizzes & Mini Projects",
+    quizzes_projects_desc: "To reinforce learning, quizzes and small practical challenges are built into most stages.",
+    switch_tracks: "Switch Tracks Anytime",
+    switch_tracks_desc: "Want to try backend or fullstack? Users can easily add or switch learning tracks at any time.",
+
+    additional_features: "Additional Features",
+    community_features: "Community Features",
+    community_features_desc: "Engage with others through forums and discussions (coming soon).",
+    dark_mode: "Dark Mode Support",
+    dark_mode_desc: "Comfortable viewing experience for long study sessions.",
+    mobile_design: "Mobile-Friendly Design",
+    mobile_design_desc: "Learn on the go with a fully responsive layout.",
+    multilingual_support: "Multi-language Support",
+    multilingual_support_desc: "Switch between English and Arabic seamlessly across the platform.",
+
+    need_more_help: "Need Further Assistance?",
+    need_more_help_desc: "If you ever get stuck or need help with specific problems, you can always head over to our dedicated Contact or FAQ pages for more support.",
   },
 
   ar: {
@@ -770,5 +800,35 @@ export const translations = {
     location_summary: "ملخص الموقع",
     top_performing_locations: "أفضل المواقع أداءً",
     students: "طلاب",
+
+    // Help Center Page
+    help_center: "مركز المساعدة",
+    what_is_codyssey: "ما هو Codyssey؟",
+    codyssey_description: "Codyssey هو منصة تعليمية مخصصة للمبرمجين الطموحين. توفر خرائط طريق منظمة، ودروس تعليمية، وميزات تفاعلية لمساعدتك على تعلم البرمجة بكفاءة وفعالية.",
+
+    how_platform_works: "كيف تعمل المنصة",
+    custom_roadmaps: "خرائط طريق مخصصة",
+    custom_roadmaps_desc: "بعد التسجيل، يختار المستخدمون أهدافهم (مثل أن يصبحوا مطوري واجهات أمامية)، وتقوم Codyssey بإنشاء خريطة طريق مخصصة لهم.",
+    step_by_step_modules: "دروس منظمة خطوة بخطوة",
+    step_by_step_modules_desc: "تنقسم كل خريطة طريق إلى دروس منظمة تشمل دروسًا، تمارين، ومصادر تعليمية.",
+    progress_tracking: "تتبع التقدم",
+    progress_tracking_desc: "تتيح لوحة التحكم للمستخدمين مراقبة تقدمهم والحفاظ على حماسهم.",
+    quizzes_projects: "اختبارات ومشاريع صغيرة",
+    quizzes_projects_desc: "لتعزيز التعلم، تتضمن معظم المراحل اختبارات وتحديات عملية صغيرة.",
+    switch_tracks: "تبديل المسارات في أي وقت",
+    switch_tracks_desc: "هل ترغب في تجربة تطوير الواجهة الخلفية أو المسار الكامل؟ يمكن للمستخدمين تبديل المسارات بسهولة في أي وقت.",
+
+    additional_features: "ميزات إضافية",
+    community_features: "ميزات المجتمع",
+    community_features_desc: "تفاعل مع الآخرين من خلال المنتديات والمناقشات (قريباً).",
+    dark_mode: "دعم الوضع الداكن",
+    dark_mode_desc: "تجربة مشاهدة مريحة لجلسات الدراسة الطويلة.",
+    mobile_design: "تصميم متوافق مع الجوال",
+    mobile_design_desc: "تعلم أثناء التنقل مع تصميم متجاوب بالكامل.",
+    multilingual_support: "دعم متعدد اللغات",
+    multilingual_support_desc: "قم بالتبديل بين الإنجليزية والعربية بسهولة عبر المنصة.",
+
+    need_more_help: "هل تحتاج إلى مساعدة إضافية؟",
+    need_more_help_desc: "إذا واجهت أي مشكلة أو احتجت إلى المساعدة، يمكنك دائمًا زيارة صفحات التواصل أو الأسئلة الشائعة للحصول على الدعم.",
   },
 };

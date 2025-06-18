@@ -26,6 +26,7 @@ import AcceptedAppointments from "./features/content/AcceptedAppointments";
 import CompletedAppointments from "./features/content/CompletedAppointments";
 import Recommendations from "./pages/Recommendations";
 import { TranslationProvider } from "./context/TranslationContext";
+import HelpCenter from "./pages/HelpCenter";
 
 function App() {
   return (
@@ -144,6 +145,7 @@ function App() {
                     </PrivateRoute>
                   }
                 />
+                <Route path="help" element={<HelpCenter />} />
               </Route>
               <Route path="roadmaps/:roadmapId" element={<Roadmap />} />
               <Route path="verify-email" element={<VerifyEmail />} />
