@@ -31,6 +31,7 @@ import Faqs from "./pages/Faqs";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AboutUs from "./pages/AboutUs";
+import ContactUs from "./pages/ContactUs";
 import Error from "./ui/Error";
 
 function App() {
@@ -155,6 +156,7 @@ function App() {
                 <Route path="terms" element={<TermsOfService />} />
                 <Route path="privacy" element={<PrivacyPolicy />} />
                 <Route path="about" element={<AboutUs />} />
+                <Route path="contact" element={<ContactUs />} />
               </Route>
 
               <Route path="roadmaps/:roadmapId" element={<Roadmap />} />
