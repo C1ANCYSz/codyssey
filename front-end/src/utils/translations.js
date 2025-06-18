@@ -439,6 +439,36 @@ export const translations = {
     faq_forgot_password_a: "You can click 'Forgot Password' on the login page. We’ll send you a password reset link to your registered email.",
     faq_no_verification_email_q: "I didn’t receive the verification email. What should I do?",
     faq_no_verification_email_a: "Check your spam folder. If it’s not there, go back to the login page and click on 'Resend verification email.'",
+
+    // Example additions for translation.js (English)
+terms_of_service_title: "Terms of Service",
+
+terms_introduction_heading: "Introduction",
+terms_introduction_paragraph1: "Welcome to Codyssey! These Terms of Service ('Terms') govern your access to and use of the Codyssey website, applications, and services (collectively, the 'Service'). Please read these Terms carefully before using our Service.",
+terms_introduction_paragraph2: "By accessing or using the Service, you agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, you may not use the Service.",
+
+terms_obligations_heading: "User Obligations",
+terms_obligations_paragraph1: "You agree to use the Service only for lawful purposes and in accordance with these Terms. You are responsible for all activities that occur under your account.",
+terms_obligations_item1: "You must be at least 13 years old to use the Service.",
+terms_obligations_item2: "You agree not to use the Service for any illegal or unauthorized purpose.",
+terms_obligations_item3: "You are responsible for maintaining the confidentiality of your account login information.",
+terms_obligations_item4: "You agree not to upload, post, or transmit any content that is unlawful, harmful, threatening, abusive, defamatory, or otherwise objectionable.",
+
+terms_intellectual_property_heading: "Intellectual Property",
+terms_intellectual_property_paragraph: "All content on the Codyssey platform, including text, graphics, logos, images, software, and the compilation thereof, is the property of Codyssey or its suppliers and protected by intellectual property laws. You may not reproduce, distribute, modify, or create derivative works of any content without express written permission.",
+
+terms_termination_heading: "Termination",
+terms_termination_paragraph: "We may terminate or suspend your account and access to the Service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach these Terms. Upon termination, your right to use the Service will immediately cease.",
+
+terms_disclaimer_heading: "Disclaimer of Warranties",
+terms_disclaimer_paragraph: "The Service is provided on an 'as is' and 'as available' basis. Codyssey makes no warranties, express or implied, regarding the Service, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.",
+
+terms_governing_law_heading: "Governing Law",
+terms_governing_law_paragraph: "These Terms shall be governed and construed in accordance with the laws of [Your Country/State], without regard to its conflict of law provisions.",
+
+terms_contact_heading: "Contact Information",
+terms_contact_paragraph: "If you have any questions about these Terms, please contact us at support@codyssey.com.",
+
   },
 
   ar: {
@@ -876,5 +906,34 @@ export const translations = {
     faq_forgot_password_a: "يمكنك النقر على 'هل نسيت كلمة المرور؟' في صفحة تسجيل الدخول. سنرسل لك رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني المسجل.",
     faq_no_verification_email_q: "لم أستلم بريد التحقق الإلكتروني. ماذا أفعل؟",
     faq_no_verification_email_a: "تحقق من مجلد البريد العشوائي. إذا لم يكن هناك، عد إلى صفحة تسجيل الدخول وانقر على 'إعادة إرسال بريد التحقق الإلكتروني.'",
+
+    // Example additions for translation.js (Arabic) - you'll need to fill these with actual Arabic translations
+terms_of_service_title: "شروط الخدمة",
+
+terms_introduction_heading: "مقدمة",
+terms_introduction_paragraph1: "أهلاً بك في كوديسي! تحكم شروط الخدمة هذه ('الشروط') وصولك واستخدامك لموقع كوديسي الإلكتروني وتطبيقاته وخدماته (يُشار إليها مجتمعة باسم 'الخدمة'). يرجى قراءة هذه الشروط بعناية قبل استخدام خدمتنا.",
+terms_introduction_paragraph2: "من خلال الوصول إلى الخدمة أو استخدامها، فإنك توافق على الالتزام بهذه الشروط وسياسة الخصوصية الخاصة بنا. إذا كنت لا توافق على هذه الشروط، فلا يجوز لك استخدام الخدمة.",
+
+terms_obligations_heading: "التزامات المستخدم",
+terms_obligations_paragraph1: "أنت توافق على استخدام الخدمة فقط للأغراض المشروعة ووفقًا لهذه الشروط. أنت مسؤول عن جميع الأنشطة التي تحدث تحت حسابك.",
+terms_obligations_item1: "يجب أن يكون عمرك 13 عامًا على الأقل لاستخدام الخدمة.",
+terms_obligations_item2: "أنت توافق على عدم استخدام الخدمة لأي غرض غير قانوني أو غير مصرح به.",
+terms_obligations_item3: "أنت مسؤول عن الحفاظ على سرية معلومات تسجيل الدخول لحسابك.",
+terms_obligations_item4: "أنت توافق على عدم تحميل أو نشر أو نقل أي محتوى غير قانوني أو ضار أو تهديدي أو مسيء أو تشهيري أو غير مرغوب فيه بأي شكل آخر.",
+
+terms_intellectual_property_heading: "الملكية الفكرية",
+terms_intellectual_property_paragraph: "جميع المحتويات الموجودة على منصة كوديسي، بما في ذلك النصوص والرسومات والشعارات والصور والبرامج وتجميعها، هي ملك لكوديسي أو لمورديها وهي محمية بموجب قوانين الملكية الفكرية. لا يجوز لك إعادة إنتاج أو توزيع أو تعديل أو إنشاء أعمال مشتقة من أي محتوى دون إذن كتابي صريح.",
+
+terms_termination_heading: "الإنهاء",
+terms_termination_paragraph: "يجوز لنا إنهاء أو تعليق حسابك والوصول إلى الخدمة فورًا، دون إشعار مسبق أو مسؤولية، لأي سبب كان، بما في ذلك على سبيل المثال لا الحصر إذا انتهكت هذه الشروط. عند الإنهاء، سيتوقف حقك في استخدام الخدمة على الفور.",
+
+terms_disclaimer_heading: "إخلاء المسؤولية عن الضمانات",
+terms_disclaimer_paragraph: "يتم تقديم الخدمة 'كما هي' و 'حسب توفرها'. لا تقدم كوديسي أي ضمانات، صريحة أو ضمنية، بخصوص الخدمة، بما في ذلك على سبيل المثال لا الحصر الضمانات الضمنية لقابلية التسويق، والملاءمة لغرض معين، وعدم الانتهاك.",
+
+terms_governing_law_heading: "القانون الواجب التطبيق",
+terms_governing_law_paragraph: "تخضع هذه الشروط وتفسر وفقًا لقوانين [بلدك/ولايتك]، دون اعتبار لتضارب أحكام القانون فيها.",
+
+terms_contact_heading: "معلومات الاتصال",
+terms_contact_paragraph: "إذا كان لديك أي أسئلة حول هذه الشروط، يرجى الاتصال بنا على support@codyssey.com.",
   },
 };

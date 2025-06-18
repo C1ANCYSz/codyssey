@@ -28,6 +28,7 @@ import Recommendations from "./pages/Recommendations";
 import { TranslationProvider } from "./context/TranslationContext";
 import HelpCenter from "./pages/HelpCenter";
 import Faqs from "./pages/Faqs";
+import TermsOfService from "./pages/TermsOfService";
 
 function App() {
   return (
@@ -148,6 +149,7 @@ function App() {
                 />
                 <Route path="help" element={<HelpCenter />} />
                 <Route path="faqs" element={<Faqs />} />
+                <Route path="terms" element={<TermsOfService />} />
               </Route>
 
               <Route path="roadmaps/:roadmapId" element={<Roadmap />} />
