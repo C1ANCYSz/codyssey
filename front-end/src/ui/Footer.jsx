@@ -6,9 +6,11 @@ import {
 } from "react-icons/fa";
 import { useAuth } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
+import { useTranslation } from "../context/TranslationContext";
 
 function Footer() {
   const { isLoggedIn } = useAuth();
+  const { t } = useTranslation();
 
   if (isLoggedIn) return null;
 
@@ -19,20 +21,25 @@ function Footer() {
     { icon: FaLinkedin, href: "#" },
   ];
 
-  const categories = ["Frontend", "Backend", "Fullstack", "Database"];
+  const categories = [
+    t("frontend"),
+    t("backend"),
+    t("fullstack"),
+    t("database"),
+  ];
 
   const quickLinks = [
-    { text: "About", to: "/about" },
-    { text: "Become instructor", to: "/become-instructor" },
-    { text: "Contact us", to: "/contact" },
-    { text: "SignUp", to: "/signup" },
+    { text: t("about"), to: "/about" },
+    { text: t("become_instructor"), to: "/become-instructor" },
+    { text: t("contact_us"), to: "/contact" },
+    { text: t("signup"), to: "/signup" },
   ];
 
   const supportLinks = [
-    { text: "Help Center", to: "/help" },
-    { text: "FAQs", to: "/faqs" },
-    { text: "Terms of Service", to: "/terms" },
-    { text: "Privacy Policy", to: "/privacy" },
+    { text: t("help_center"), to: "/help" },
+    { text: t("faqs"), to: "/faqs" },
+    { text: t("terms_of_service"), to: "/terms" },
+    { text: t("privacy_policy"), to: "/privacy" },
   ];
 
   return (
@@ -53,11 +60,7 @@ function Footer() {
             </h2>
           </div>
 
-          <p className="text-gray-300">
-            Codyssey empowers programmers through structured learning paths,
-            expert-crafted tutorials, and cutting-edge tools — your gateway to
-            programming excellence.
-          </p>
+          <p className="text-gray-300">{t("codyssey_description")}</p>
 
           <div className="flex gap-4">
             {socialLinks.map((social, index) => {
@@ -79,7 +82,7 @@ function Footer() {
 
         {/* Categories */}
         <div className="space-y-6">
-          <h3 className="text-xl font-bold">Top Categories</h3>
+          <h3 className="text-xl font-bold">{t("top_categories")}</h3>
           <ul className="space-y-3">
             {categories.map((category, index) => (
               <li key={index}>
@@ -97,7 +100,7 @@ function Footer() {
 
         {/* Quick Links */}
         <div className="space-y-6">
-          <h3 className="text-xl font-bold">Quick Links</h3>
+          <h3 className="text-xl font-bold">{t("quick_links")}</h3>
           <ul className="space-y-3">
             {quickLinks.map((link, index) => (
               <li key={index}>
@@ -115,7 +118,7 @@ function Footer() {
 
         {/* Support */}
         <div className="space-y-6">
-          <h3 className="text-xl font-bold">Support</h3>
+          <h3 className="text-xl font-bold">{t("support")}</h3>
           <ul className="space-y-3">
             {supportLinks.map((link, index) => (
               <li key={index}>
@@ -135,7 +138,7 @@ function Footer() {
       <div className="border-t border-white/10">
         <div className="container mx-auto px-6 py-6">
           <p className="text-center text-sm text-gray-400">
-            © {new Date().getFullYear()} Codyssey. All rights reserved.
+            © {new Date().getFullYear()} Codyssey. {t("all_rights_reserved")}.
           </p>
         </div>
       </div>

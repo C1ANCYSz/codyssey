@@ -9,6 +9,7 @@ import { useAddContentManager } from "../hooks/user/admin/useAddContentManager";
 import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { IoMdClose } from "react-icons/io";
+import { useTranslation } from "../context/TranslationContext";
 
 function AdminContentManagers() {
   const [addContentManagerModal, setAddContentManagerModal] = useState(false);
@@ -17,6 +18,7 @@ function AdminContentManagers() {
     useGetContentManagers();
   const { toggleRevoke, isLoading: isRevoking } = useToggleRevoke();
   const { addContentManager, isLoading: isAdding } = useAddContentManager();
+  const { t } = useTranslation();
   const modalRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -67,7 +69,7 @@ function AdminContentManagers() {
           >
             <div className="mb-6 flex items-center justify-between">
               <h2 className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-2xl font-bold text-transparent">
-                Add Content Manager
+                {t("add_content_manager")}
               </h2>
               <button
                 onClick={() => setAddContentManagerModal(false)}
@@ -83,7 +85,7 @@ function AdminContentManagers() {
             >
               <input
                 type="email"
-                placeholder="Enter email address"
+                placeholder={t("enter_email_address")}
                 {...register("email", { required: true })}
                 className="w-full rounded-xl border border-white/10 bg-white/5 p-3 text-center text-white placeholder-white/50 transition-all duration-300 outline-none focus:border-white/20 focus:bg-white/10 focus:ring-2 focus:ring-white/10"
               />
@@ -91,7 +93,7 @@ function AdminContentManagers() {
                 type="submit"
                 className="bg-primary-600 mx-auto rounded-full p-3 px-4 font-medium text-white transition-all duration-300 focus:ring-2 focus:ring-white/20"
               >
-                Add Manager
+                {t("add_manager")}
               </button>
             </form>
           </div>
@@ -134,7 +136,7 @@ function AdminContentManagers() {
             </h2>
             <p className="text-sm text-white/60 select-none">{manager.email}</p>
             <p className="mb-6 text-sm text-white/60 select-none">
-              {manager.phoneNumber || "No Phone Number"}
+              {manager.phoneNumber || t("no_phone_number")}
             </p>
 
             <button
@@ -142,7 +144,7 @@ function AdminContentManagers() {
                 toggleRevoke(manager.email, {
                   onSuccess: () => {
                     toast.success(
-                      `${manager.name} has been ${manager.isRevoked ? "unrevoked" : "revoked"}`,
+                      `${manager.name} ${manager.isRevoked ? t("has_been_unrevoked") : t("has_been_revoked")}`,
                     );
                   },
                 })
@@ -154,7 +156,7 @@ function AdminContentManagers() {
                   : "bg-red-500 hover:bg-red-600"
               } disabled:cursor-not-allowed disabled:opacity-50`}
             >
-              {manager.isRevoked ? "Unrevoke Access" : "Revoke Access"}
+              {manager.isRevoked ? t("unrevoke") : t("revoke")}
             </button>
           </div>
         ))}

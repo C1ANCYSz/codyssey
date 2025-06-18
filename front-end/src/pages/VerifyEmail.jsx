@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useVerifyEmail } from "../hooks/auth/useVerifyEmail";
 import { MdOutlineMarkEmailUnread } from "react-icons/md";
+import { useTranslation } from "../context/TranslationContext";
 
 // Add this helper function at the top of your file
 const mergeRefs = (...refs) => {
@@ -18,6 +19,7 @@ const mergeRefs = (...refs) => {
 
 function VerifyEmail() {
   const { verifyEmail: verifyUserEmail, isLoading } = useVerifyEmail();
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -76,10 +78,10 @@ function VerifyEmail() {
           <MdOutlineMarkEmailUnread className="text-9xl text-white" />
 
           <h1 className="text-2xl font-bold text-white md:text-4xl">
-            Verification Email sent successfully
+            {t("verification_email_sent")}
           </h1>
           <p className="text-center text-base text-white md:text-2xl">
-            Enter the code you received
+            {t("enter_code_received")}
           </p>
         </div>
 
@@ -118,11 +120,8 @@ function VerifyEmail() {
             })}
           </div>
 
-          {/* Error message */}
           {Object.keys(errors).length > 0 && (
-            <p className="text-sm text-red-500">
-              Please fill all fields with valid numbers
-            </p>
+            <p className="text-sm text-red-500">{t("fill_all_fields_valid")}</p>
           )}
 
           <button
@@ -130,7 +129,7 @@ function VerifyEmail() {
             className="bg-primary-600 hover:bg-primary-700 w-full rounded-full px-8 py-2.5 text-sm tracking-wider text-white uppercase transition-all duration-300 md:w-auto md:px-20 md:py-3 md:text-base"
             disabled={isLoading}
           >
-            {isLoading ? "Verifying..." : "Verify"}
+            {isLoading ? t("verifying") : t("verify")}
           </button>
         </form>
       </div>

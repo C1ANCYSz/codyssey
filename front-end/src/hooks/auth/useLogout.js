@@ -37,6 +37,7 @@ export function useLogout() {
     },
     onSuccess: () => {
       toast.success("Logout successful");
+      // queryClient.invalidateQueries({ active: true });
     },
     onError: (data) => {
       toast.error(data.message);

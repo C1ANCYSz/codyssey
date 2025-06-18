@@ -19,9 +19,11 @@ import { useUpdateStageContent } from "../../hooks/user/content-manager/useUpdat
 import { useUpdateStageProgress } from "../../hooks/user/useUpdateStageProgress";
 import { useGetUser } from "../../hooks/user/useGetUser";
 import { useGetStudent } from "../../hooks/user/useGetStudent";
+import { useTranslation } from "../../context/TranslationContext";
 
 function AddVideosForm({ stage, updateStageContent }) {
   console.log(stage);
+  const { t } = useTranslation();
   const [videosArray, setVideosArray] = useState([]);
   const { _id: stageId } = stage || {};
   const { register, handleSubmit, getValues, setValue } = useForm();
@@ -56,9 +58,9 @@ function AddVideosForm({ stage, updateStageContent }) {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 20 }}
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-footer-900/50 flex grow flex-col items-center gap-4 overflow-hidden rounded-xl p-6 backdrop-blur-sm"
+      className="flex h-fit grow flex-col items-center gap-4 overflow-hidden rounded-xl bg-gray-800/40 p-6 backdrop-blur-sm"
     >
-      <h3 className="text-2xl font-semibold">Add Videos</h3>
+      <h3 className="text-2xl font-semibold">{t("add_videos")}</h3>
       <AnimatePresence>
         {videosArray?.map((video, index) => (
           <motion.div
@@ -70,7 +72,7 @@ function AddVideosForm({ stage, updateStageContent }) {
           >
             <input
               type="text"
-              placeholder="Video Title"
+              placeholder={t("video_title")}
               className="bg-footer-800 ring-primary-500 flex-1 rounded-lg px-4 py-2 text-white outline-none focus:ring-2"
               {...register(`videos.${index}.title`, {
                 required: true,
@@ -78,7 +80,7 @@ function AddVideosForm({ stage, updateStageContent }) {
             />
             <input
               type="text"
-              placeholder="Video URL"
+              placeholder={t("video_url")}
               className="bg-footer-800 ring-primary-500 flex-1 rounded-lg px-4 py-2 text-white outline-none focus:ring-2"
               {...register(`videos.${index}.url`, {
                 required: true,
@@ -120,7 +122,7 @@ function AddVideosForm({ stage, updateStageContent }) {
           type="submit"
           className="bg-primary-700 hover:bg-primary-600 rounded-full px-6 py-2 font-bold text-white transition-colors"
         >
-          Add Videos
+          {t("add_videos")}
         </motion.button>
       </div>
     </motion.form>
@@ -128,6 +130,8 @@ function AddVideosForm({ stage, updateStageContent }) {
 }
 
 function AddDocsForm({ stage, updateStageContent, docsArray, setDocsArray }) {
+  console.log(stage);
+  const { t } = useTranslation();
   const { _id: stageId } = stage;
   const { register, handleSubmit, getValues, setValue } = useForm();
   const onDocSubmit = (data) => {
@@ -178,13 +182,13 @@ function AddDocsForm({ stage, updateStageContent, docsArray, setDocsArray }) {
           >
             <input
               type="text"
-              placeholder="Document Title"
+              placeholder={t("document_title")}
               className="bg-footer-800 ring-primary-500 hover:bg-footer-700 flex-1 rounded-lg px-4 py-2 text-white transition-all duration-200 outline-none focus:ring-2"
               {...register(`docs.${index}.title`, { required: true })}
             />
             <input
               type="text"
-              placeholder="Document URL"
+              placeholder={t("document_url")}
               className="bg-footer-800 ring-primary-500 hover:bg-footer-700 flex-1 rounded-lg px-4 py-2 text-white transition-all duration-200 outline-none focus:ring-2"
               {...register(`docs.${index}.url`, { required: true })}
             />
@@ -212,7 +216,7 @@ function AddDocsForm({ stage, updateStageContent, docsArray, setDocsArray }) {
           type="submit"
           className="bg-primary-700 hover:bg-primary-600 hover:shadow-primary-500/20 rounded-full px-6 py-2 font-bold text-white shadow-lg transition-all duration-300"
         >
-          Add Documents
+          {t("add_documents")}
         </motion.button>
       )}
     </motion.form>
@@ -221,6 +225,7 @@ function AddDocsForm({ stage, updateStageContent, docsArray, setDocsArray }) {
 
 function VideoContent() {
   const navigate = useNavigate();
+  const { t, currentLanguage } = useTranslation();
   const { register, handleSubmit } = useForm();
 
   const { updateStageProgress } = useUpdateStageProgress();
@@ -408,7 +413,7 @@ function VideoContent() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="from-footer-900 to-footer-800 min-h-screen bg-gradient-to-b"
+      className="min-h-screen bg-gradient-to-b from-gray-900 to-black"
     >
       <div className="overflow-y-auto px-6 py-6 text-white">
         <motion.div
@@ -420,17 +425,19 @@ function VideoContent() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate(`/roadmaps/${roadmapId}`)}
-            className="bg-footer-900/70 hover:bg-primary-600 flex cursor-pointer items-center gap-2 rounded-full px-4 py-2 text-lg transition-all duration-300"
+            className="hover:bg-primary-600 flex cursor-pointer items-center gap-2 rounded-full bg-gray-800/40 px-4 py-2 text-lg transition-all duration-300"
           >
             <FaArrowLeft />
-            <span className="font-bold capitalize">Back to roadmap</span>
+            <span className="font-bold capitalize">{t("back_to_roadmap")}</span>
           </motion.button>
           <motion.p
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             className="bg-primary-700 rounded-full px-4 py-2 text-sm font-bold text-white select-none"
           >
-            Stage {number} of {stagesCount}
+            {currentLanguage === "en"
+              ? `stage ${number} from ${stagesCount}`
+              : `المرحلة ${number}  من ${stagesCount}`}
           </motion.p>
         </motion.div>
 
@@ -463,7 +470,7 @@ function VideoContent() {
                   }
                 }}
               >
-                {isEditing ? "Done" : "Edit"}
+                {isEditing ? t("done") : t("edit")}
               </button>
             )}
           </div>
@@ -473,7 +480,9 @@ function VideoContent() {
               animate={{ opacity: 1, y: 0 }}
               className="flex items-center gap-3"
             >
-              <label className="text-lg font-semibold">Stage Number: </label>
+              <label className="text-lg font-semibold">
+                {t("stage_number")}{" "}
+              </label>
               <input
                 type="number"
                 defaultValue={number}
@@ -482,7 +491,7 @@ function VideoContent() {
                   valueAsNumber: true,
                   required: {
                     value: true,
-                    message: "Stage number is required",
+                    message: t("stage_number_required"),
                   },
                   min: 1,
                 })}
@@ -496,7 +505,7 @@ function VideoContent() {
               className="flex items-center gap-3"
             >
               <label className="text-lg font-semibold">
-                Stage Description:{" "}
+                {t("stage_description_label")}{" "}
               </label>
 
               <textarea
@@ -506,7 +515,7 @@ function VideoContent() {
                 {...register("description", {
                   required: {
                     value: true,
-                    message: "Description is required",
+                    message: t("description_required"),
                   },
                 })}
               />
@@ -519,7 +528,7 @@ function VideoContent() {
         <div>
           <div className="mt-10">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-semibold">Videos</h2>
+              <h2 className="text-2xl font-semibold">{t("videos")}</h2>
               {user?.role === "student" && (
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -536,7 +545,7 @@ function VideoContent() {
                   } `}
                   onClick={handleUpdateStageProgress}
                 >
-                  next stage
+                  {t("next_stage")}
                   <FaArrowRight className="transition-all duration-300 hover:translate-x-1" />
                 </motion.button>
               )}
@@ -570,10 +579,10 @@ function VideoContent() {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="bg-footer-900/70 flex-1 rounded-xl p-6 backdrop-blur-sm"
+                className="flex-1 rounded-xl bg-gray-800/40 p-6 backdrop-blur-sm"
               >
                 <h3 className="border-b border-gray-700 pb-4 text-center text-4xl font-semibold tracking-wider">
-                  Playlist
+                  {t("playlist")}
                 </h3>
                 <ul className="mt-6 max-h-[500px] space-y-4 divide-y divide-gray-700/50 overflow-y-auto">
                   <AnimatePresence>
@@ -634,7 +643,7 @@ function VideoContent() {
                                   {video.title}
                                 </p>
                                 <span className="text-sm text-gray-400">
-                                  Click to play
+                                  {t("click_to_play")}
                                 </span>
                               </>
                             )}
@@ -688,7 +697,7 @@ function VideoContent() {
             className="mt-10"
           >
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-semibold">Documents</h2>
+              <h2 className="text-2xl font-semibold">{t("documents")}</h2>
               {user?.role === "content manager" && (
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -703,7 +712,12 @@ function VideoContent() {
               )}
             </div>
             {user?.role === "content manager" && docsArray.length > 0 && (
-              <AddDocsForm />
+              <AddDocsForm
+                stage={stage}
+                updateStageContent={updateStageContent}
+                docsArray={docsArray}
+                setDocsArray={setDocsArray}
+              />
             )}
             <ul className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {docs?.map((doc) => (

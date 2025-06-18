@@ -15,11 +15,13 @@ import { useUpdateStageContent } from "../../hooks/user/content-manager/useUpdat
 import { useUpdateStageProgress } from "../../hooks/user/useUpdateStageProgress";
 import { useGetStudent } from "../../hooks/user/useGetStudent";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "../../context/TranslationContext";
 
 function ManageQuiz({ stage }) {
   const { register, handleSubmit, reset } = useForm();
   const [newQuestions, setNewQuestions] = useState([]);
   const [editingQuestion, setEditingQuestion] = useState(null);
+  const { t } = useTranslation();
 
   const { updateStageContent, isLoading: isUpdatingContent } =
     useUpdateStageContent();
@@ -116,7 +118,7 @@ function ManageQuiz({ stage }) {
         <div className="sticky top-8">
           <h2 className="mb-8 flex items-center gap-3 text-3xl font-bold text-white">
             <span className="from-primary-500 to-primary-600 bg-gradient-to-r bg-clip-text text-transparent">
-              Questions
+              {t("questions")}
             </span>
             <span className="rounded-full bg-white/10 px-3 py-1 text-lg">
               {stage.questions.length}
@@ -139,7 +141,7 @@ function ManageQuiz({ stage }) {
                         defaultValue={editingQuestion?.questionText}
                         {...register(`questions.${index}.questionText`)}
                         className="focus:ring-primary-500 w-full rounded-xl border-0 bg-white/5 p-4 text-white placeholder-white/40 ring-1 ring-white/10 transition-all focus:ring-2"
-                        placeholder="Enter question text..."
+                        placeholder={t("enter_question_text")}
                       />
                     </div>
 
@@ -151,7 +153,7 @@ function ManageQuiz({ stage }) {
                         >
                           <input
                             type="text"
-                            placeholder={`Option ${optionIndex + 1}`}
+                            placeholder={`${t("option")} ${optionIndex + 1}`}
                             defaultValue={
                               editingQuestion?.options[optionIndex]?.answer
                             }
@@ -171,7 +173,7 @@ function ManageQuiz({ stage }) {
                               className="accent-primary-500 h-5 w-5"
                             />
                             <span className="text-sm text-white/60">
-                              Correct
+                              {t("correct")}
                             </span>
                           </label>
                         </div>
@@ -184,14 +186,14 @@ function ManageQuiz({ stage }) {
                         onClick={() => setEditingQuestion(null)}
                         className="rounded-xl border border-white/10 px-6 py-2.5 text-white/80 transition-all hover:bg-white/5"
                       >
-                        Cancel
+                        {t("cancel")}
                       </button>
                       <button
                         type="submit"
                         className="from-primary-600 to-primary-500 shadow-primary-500/25 hover:shadow-primary-500/40 flex items-center gap-2 rounded-xl bg-gradient-to-r px-6 py-2.5 font-medium text-white shadow-lg transition-all"
                       >
                         <PiCheckBold className="h-5 w-5" />
-                        Save Changes
+                        {t("save_changes")}
                       </button>
                     </div>
                   </form>
@@ -254,7 +256,9 @@ function ManageQuiz({ stage }) {
       <div className="lg:w-[400px]">
         <div className="sticky top-8">
           <div className="mb-8 flex items-center justify-between">
-            <h2 className="text-3xl font-bold text-white">Add Questions</h2>
+            <h2 className="text-3xl font-bold text-white">
+              {t("add_question")}
+            </h2>
             <button
               className="from-primary-600 to-primary-500 shadow-primary-500/25 hover:shadow-primary-500/40 rounded-xl bg-gradient-to-r p-3 text-white shadow-lg transition-all"
               onClick={handleAddQuestion}
@@ -275,14 +279,14 @@ function ManageQuiz({ stage }) {
                       htmlFor={`question-${index}`}
                       className="mb-2 block text-sm font-medium text-white/60"
                     >
-                      Question {index + 1}
+                      {t("questions")} {index + 1}
                     </label>
                     <input
                       {...register(`questions.${index}.questionText`)}
                       type="text"
                       id={`question-${index}`}
                       className="focus:ring-primary-500 w-full rounded-xl border-0 bg-white/5 p-4 text-white placeholder-white/40 ring-1 ring-white/10 transition-all focus:ring-2"
-                      placeholder="Enter your question..."
+                      placeholder={t("enter_question_text")}
                     />
                   </div>
 
@@ -297,7 +301,7 @@ function ManageQuiz({ stage }) {
                             `questions.${index}.options.${optionNum - 1}.answer`,
                           )}
                           type="text"
-                          placeholder={`Option ${optionNum}`}
+                          placeholder={`${t("option")} ${optionNum}`}
                           className="flex-1 rounded-lg border-0 bg-transparent p-2 text-white placeholder-white/40 ring-0 focus:ring-0"
                         />
                         <label className="flex cursor-pointer items-center gap-2">
@@ -307,7 +311,9 @@ function ManageQuiz({ stage }) {
                             value={optionNum - 1}
                             className="accent-primary-500 h-5 w-5"
                           />
-                          <span className="text-sm text-white/60">Correct</span>
+                          <span className="text-sm text-white/60">
+                            {t("correct")}
+                          </span>
                         </label>
                       </div>
                     ))}
@@ -319,10 +325,10 @@ function ManageQuiz({ stage }) {
             {newQuestions.length > 0 && (
               <button
                 type="submit"
+                className="from-primary-600 to-primary-500 shadow-primary-500/25 hover:shadow-primary-500/40 w-full rounded-xl bg-gradient-to-r px-6 py-3 font-medium text-white shadow-lg transition-all"
                 disabled={isUpdatingContent}
-                className="from-primary-600 to-primary-500 shadow-primary-500/25 hover:shadow-primary-500/40 w-full rounded-xl bg-gradient-to-r py-3 font-medium text-white shadow-lg transition-all disabled:opacity-50"
               >
-                Save Questions
+                {isUpdatingContent ? t("saving") : t("save")}
               </button>
             )}
           </form>
@@ -339,6 +345,7 @@ function QuizContent({ stage, roadmapId }) {
   const { user } = useAuth();
   const { updateStageProgress, isLoading } = useUpdateStageProgress();
   const { studentData, isLoading: isGettingStudent } = useGetStudent();
+  const { t } = useTranslation();
   const [quizState, setQuizState] = useState({
     selectedQuestion: null,
     score: 0,
@@ -418,7 +425,7 @@ function QuizContent({ stage, roadmapId }) {
     <main className="mx-auto mt-12 max-w-4xl px-4">
       <div className="flex items-center justify-between">
         <h2 className="from-primary-500 to-primary-600 bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent">
-          Quiz
+          {t("questions")}
         </h2>
         {quizState.isStarted && !quizState.isCompleted && (
           <div className="flex items-center gap-3 rounded-full bg-white/5 px-6 py-3 ring-1 ring-white/10 backdrop-blur-md">
@@ -434,25 +441,27 @@ function QuizContent({ stage, roadmapId }) {
         {!quizState.isStarted && (
           <div className="space-y-8 text-center">
             <div className="space-y-6">
-              <h3 className="text-3xl font-bold text-white">Quiz Overview</h3>
+              <h3 className="text-3xl font-bold text-white">
+                {t("questions")} {t("overview")}
+              </h3>
               <div className="space-y-6">
                 <div className="flex justify-center gap-8">
                   <div className="rounded-xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-md">
-                    <p className="text-sm text-white/60">Time Limit</p>
+                    <p className="text-sm text-white/60">{t("time_limit")}</p>
                     <p className="from-primary-500 to-primary-600 bg-gradient-to-r bg-clip-text text-2xl font-bold text-transparent">
-                      15 minutes
+                      15 {t("minutes")}
                     </p>
                   </div>
                   <div className="rounded-xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-md">
-                    <p className="text-sm text-white/60">Questions</p>
+                    <p className="text-sm text-white/60">{t("questions")}</p>
                     <p className="from-primary-500 to-primary-600 bg-gradient-to-r bg-clip-text text-2xl font-bold text-transparent">
                       {questionsCount}
                     </p>
                   </div>
                 </div>
                 <p className="text-white/60">
-                  Complete all questions within the time limit. You need 70% to
-                  pass.
+                  {t("complete_all_questions_within_time_limit")}{" "}
+                  {t("you_need_70_percent_to_pass")}
                 </p>
               </div>
             </div>
@@ -460,7 +469,7 @@ function QuizContent({ stage, roadmapId }) {
               onClick={startQuiz}
               className="from-primary-600 to-primary-500 shadow-primary-500/25 hover:shadow-primary-500/40 rounded-xl bg-gradient-to-r px-10 py-4 text-lg font-medium text-white shadow-lg transition-all"
             >
-              Start Quiz
+              {t("start_quiz")}
             </button>
           </div>
         )}
@@ -502,7 +511,7 @@ function QuizContent({ stage, roadmapId }) {
                 }`}
                 onClick={handleNextQuestion}
               >
-                {quizState.isLastQuestion ? "Finish" : "Next Question"}
+                {quizState.isLastQuestion ? t("finish") : t("next_question")}
               </button>
             </div>
           </div>
@@ -511,7 +520,9 @@ function QuizContent({ stage, roadmapId }) {
         {quizState.isCompleted && (
           <div className="space-y-8 text-center">
             <div className="space-y-4">
-              <h3 className="text-3xl font-bold text-white">Quiz Completed</h3>
+              <h3 className="text-3xl font-bold text-white">
+                {t("quiz_completed")}
+              </h3>
               <div className="inline-flex items-center gap-3 rounded-full bg-white/5 px-6 py-3 ring-1 ring-white/10">
                 <span className="text-primary-500 text-2xl font-bold">
                   {quizState.score}
@@ -528,31 +539,32 @@ function QuizContent({ stage, roadmapId }) {
                 isPassed ? "text-green-400" : "text-red-400"
               }`}
             >
-              {isPassed ? (
-                <PiCheckCircleFill className="text-6xl" />
-              ) : (
-                <PiXCircleFill className="text-6xl" />
-              )}
-              <p className="text-3xl font-bold">
-                {isPassed ? "Passed!" : "Failed"}
+              <h4 className="text-2xl font-bold">
+                {isPassed ? t("congratulations") : t("try_again")}
+              </h4>
+              <p className="text-lg">
+                {isPassed ? t("you_passed") : t("you_failed")}
               </p>
             </div>
 
-            {isPassed ? (
-              <button
-                onClick={handleNextStage}
-                className="from-primary-600 to-primary-500 shadow-primary-500/25 hover:shadow-primary-500/40 rounded-xl bg-gradient-to-r px-10 py-4 text-lg font-medium text-white shadow-lg transition-all"
-              >
-                Continue to Next Stage
-              </button>
-            ) : (
-              <button
-                onClick={handleRetakeQuiz}
-                className="rounded-xl bg-gradient-to-r from-red-600 to-red-500 px-10 py-4 text-lg font-medium text-white shadow-lg shadow-red-500/25 transition-all hover:shadow-red-500/40"
-              >
-                Retake Quiz
-              </button>
-            )}
+            <div className="flex justify-center gap-4">
+              {!isPassed && (
+                <button
+                  onClick={handleRetakeQuiz}
+                  className="rounded-xl border border-white/10 px-8 py-3 text-white transition-all hover:bg-white/5"
+                >
+                  {t("retake_quiz")}
+                </button>
+              )}
+              {isPassed && (
+                <button
+                  onClick={handleNextStage}
+                  className="from-primary-600 to-primary-500 shadow-primary-500/25 hover:shadow-primary-500/40 rounded-xl bg-gradient-to-r px-8 py-3 font-medium text-white shadow-lg transition-all"
+                >
+                  {t("next_stage")}
+                </button>
+              )}
+            </div>
           </div>
         )}
       </section>
@@ -568,6 +580,7 @@ const Quiz = () => {
     useUpdateStageContent();
   const { stage: { stage } = {}, isLoading } = useGetStage();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const {
     description,
@@ -625,7 +638,7 @@ const Quiz = () => {
             className="group flex items-center gap-3 rounded-xl bg-white/5 px-6 py-3 text-lg font-medium text-white ring-1 ring-white/10 backdrop-blur-md transition-all hover:bg-white/10"
           >
             <FaArrowLeft className="transition-transform group-hover:-translate-x-1" />
-            <span>Back to Roadmap</span>
+            <span>{t("back_to_roadmap")}</span>
           </button>
         </nav>
 

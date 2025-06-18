@@ -24,6 +24,7 @@ import {
   FiArrowUp,
   FiArrowDown,
 } from "react-icons/fi";
+import { useTranslation } from "../../context/TranslationContext";
 
 // Register ChartJS components
 ChartJS.register(
@@ -36,6 +37,7 @@ ChartJS.register(
 );
 
 function AcademyDashboard() {
+  const { t } = useTranslation();
   const { data, isLoading } = useGetDashboard();
 
   if (isLoading) return <Loader />;
@@ -43,7 +45,7 @@ function AcademyDashboard() {
   // Stats cards data with trend indicators (would be calculated from historical data)
   const statsCards = [
     {
-      label: "Total Students",
+      label: t("total_students"),
       value: data.students,
       icon: <FiUsers size={24} />,
       trend: data.trends.students, // percentage growth
@@ -52,7 +54,7 @@ function AcademyDashboard() {
       gradientTo: "to-blue-500",
     },
     {
-      label: "Accepted Students",
+      label: t("accepted_students"),
       value: data.accepted,
       icon: <FiCheckCircle size={24} className="text-white" />,
       trend: data.trends.accepted,
@@ -61,7 +63,7 @@ function AcademyDashboard() {
       gradientTo: "to-green-500",
     },
     {
-      label: "Completed",
+      label: t("completed"),
       value: data.completed,
       icon: <FiAward size={24} className="text-white" />,
       trend: data.trends.completed,
@@ -70,7 +72,7 @@ function AcademyDashboard() {
       gradientTo: "to-cyan-500",
     },
     {
-      label: "Pending",
+      label: t("pending"),
       value: data.pending,
       icon: <FiClock size={24} className="text-white" />,
       trend: data.trends.pending,
@@ -79,7 +81,7 @@ function AcademyDashboard() {
       gradientTo: "to-yellow-500",
     },
     {
-      label: "Passed",
+      label: t("passed"),
       value: data.passed,
       icon: <FiAward size={24} />,
       color: "green",
@@ -87,7 +89,7 @@ function AcademyDashboard() {
       gradientTo: "to-emerald-500",
     },
     {
-      label: "Failed",
+      label: t("failed"),
       value: data.failed,
       icon: <FiXCircle size={24} />,
       color: "red",
@@ -95,7 +97,7 @@ function AcademyDashboard() {
       gradientTo: "to-rose-500",
     },
     {
-      label: "Today's Appointments",
+      label: t("todays_appointments"),
       value: data.todayAppointments,
       icon: <FiCalendar size={24} />,
       color: "purple",
@@ -109,7 +111,7 @@ function AcademyDashboard() {
     labels: data.locations.map((loc) => loc.location),
     datasets: [
       {
-        label: "Pending",
+        label: t("pending"),
         data: data.locations.map((loc) => loc.pending),
         backgroundColor: "rgba(245, 158, 11, 0.7)",
         borderColor: "rgba(245, 158, 11, 1)",
@@ -117,7 +119,7 @@ function AcademyDashboard() {
         borderRadius: 4,
       },
       {
-        label: "Accepted",
+        label: t("accepted"),
         data: data.locations.map((loc) => loc.accepted),
         backgroundColor: "rgba(16, 185, 129, 0.7)",
         borderColor: "rgba(16, 185, 129, 1)",
@@ -125,7 +127,7 @@ function AcademyDashboard() {
         borderRadius: 4,
       },
       {
-        label: "Completed",
+        label: t("completed"),
         data: data.locations.map((loc) => loc.completed),
         backgroundColor: "rgba(79, 70, 229, 0.7)",
         borderColor: "rgba(79, 70, 229, 1)",
@@ -160,7 +162,7 @@ function AcademyDashboard() {
         usePointStyle: true,
         callbacks: {
           label: function (context) {
-            return `${context.dataset.label}: ${context.raw} students`;
+            return `${context.dataset.label}: ${context.raw} ${t("students")}`;
           },
         },
       },
@@ -205,7 +207,7 @@ function AcademyDashboard() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8">
           <div>
             <h1 className="bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600 bg-clip-text text-3xl font-bold tracking-tight text-transparent">
-              Academy Dashboard
+              {t("academy_dashboard")}
             </h1>
           </div>
         </div>
@@ -268,7 +270,9 @@ function AcademyDashboard() {
                     >
                       {Math.abs(stat.trend)}%
                     </span>
-                    <span className="ml-1 text-gray-400">from last month</span>
+                    <span className="ml-1 text-gray-400">
+                      {t("from_last_month")}
+                    </span>
                   </div>
                 </div>
               )}
@@ -283,10 +287,10 @@ function AcademyDashboard() {
             <div className="mb-6 flex items-center justify-between">
               <h2 className="flex items-center text-xl font-semibold text-white">
                 <FiMap className="mr-3 h-6 w-6 text-indigo-400" />
-                Student Status by Location
+                {t("student_status_by_location")}
               </h2>
               <span className="inline-flex items-center rounded-full bg-indigo-900/60 px-3 py-1 text-sm font-medium text-indigo-300">
-                {data.locations.length} Locations
+                {data.locations.length} {t("locations")}
               </span>
             </div>
 
@@ -298,14 +302,14 @@ function AcademyDashboard() {
           <div className="relative overflow-hidden rounded-xl border border-gray-700/50 bg-gray-800/50 p-6 shadow-lg backdrop-blur-sm lg:col-span-3">
             <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-purple-500/20 blur-3xl"></div>
             <h2 className="mb-5 text-xl font-semibold text-white">
-              Location Summary
+              {t("location_summary")}
             </h2>
 
             {/* Summary Numbers */}
             <div className="mb-8 grid grid-cols-3 gap-4">
               <div className="overflow-hidden rounded-lg bg-amber-900/20 p-4 backdrop-blur-sm">
                 <p className="text-xs font-semibold text-amber-300 uppercase">
-                  Pending
+                  {t("pending")}
                 </p>
                 <p className="mt-2 text-2xl font-bold text-amber-100">
                   {totalPending}
@@ -313,7 +317,7 @@ function AcademyDashboard() {
               </div>
               <div className="overflow-hidden rounded-lg bg-emerald-900/20 p-4 backdrop-blur-sm">
                 <p className="text-xs font-semibold text-emerald-300 uppercase">
-                  Accepted
+                  {t("accepted")}
                 </p>
                 <p className="mt-2 text-2xl font-bold text-emerald-100">
                   {totalAccepted}
@@ -321,7 +325,7 @@ function AcademyDashboard() {
               </div>
               <div className="overflow-hidden rounded-lg bg-blue-900/20 p-4 backdrop-blur-sm">
                 <p className="text-xs font-semibold text-blue-300 uppercase">
-                  Completed
+                  {t("completed")}
                 </p>
                 <p className="mt-2 text-2xl font-bold text-blue-100">
                   {totalCompleted}
@@ -331,7 +335,7 @@ function AcademyDashboard() {
 
             {/* Top Locations */}
             <h3 className="mb-4 text-sm font-medium text-gray-300">
-              Top Performing Locations
+              {t("top_performing_locations")}
             </h3>
             <ul className="space-y-4">
               {data.locations

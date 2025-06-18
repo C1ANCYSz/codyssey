@@ -21,6 +21,10 @@ export function useVerifyEmail() {
           credentials: "include",
         },
       );
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to verify email");
+      }
       return response.json();
     },
     onSuccess: (data) => {

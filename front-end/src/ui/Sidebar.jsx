@@ -25,99 +25,8 @@ import { RiCalendarScheduleLine } from "react-icons/ri";
 import { AiOutlineSchedule } from "react-icons/ai";
 import { GrScheduleNew } from "react-icons/gr";
 import { MdOutlineRecommend } from "react-icons/md";
-const navItemsStudent = [
-  {
-    to: "/dashboard",
-    icon: <FiHome className="text-xl" />,
-    label: "Dashboard",
-  },
-  {
-    to: "/roadmaps",
-    icon: <FiBookOpen className="text-xl" />,
-    label: "Roadmaps",
-  },
-  {
-    to: "/certificates",
-    icon: <TbFileCertificate className="text-xl" />,
-    label: "Certificates",
-  },
-  {
-    to: "/appointments",
-    icon: <GrScheduleNew className="text-xl" />,
-    label: "Appointments",
-  },
-  {
-    to: "/recommendations",
-    icon: <MdOutlineRecommend className="text-xl" />,
-    label: "Recommendations",
-  },
-];
-
-const navItemsContentManager = [
-  {
-    to: "/roadmaps",
-    icon: <FiBookOpen className="text-xl" />,
-    label: "Roadmaps",
-  },
-  {
-    to: "/add-roadmap",
-    icon: <FiBookOpen className="text-xl" />,
-    label: "Add Roadmap",
-  },
-];
-
-const navItemsAdmin = [
-  {
-    to: "/dashboard",
-    icon: <FiHome className="text-xl" />,
-    label: "Dashboard",
-  },
-  {
-    to: "/admin/content-managers",
-    icon: <FaUsers className="text-xl" />,
-    label: "Content Managers",
-  },
-  {
-    to: "/admin/academies",
-    icon: <FaUsers className="text-xl" />,
-    label: "Academies",
-  },
-  {
-    label: "Notifications",
-    icon: <FiBell className="text-xl" />,
-    button: true,
-  },
-];
-
-const navItemsAcademy = [
-  {
-    to: "/dashboard",
-    icon: <FiHome className="text-xl" />,
-    label: "Dashboard",
-  },
-  {
-    to: "/academy/pending-appointments",
-    icon: <RiCalendarScheduleLine className="text-xl" />,
-    label: "Pending Appointments",
-  },
-  {
-    to: "/academy/accepted-appointments",
-    icon: <AiOutlineSchedule className="text-xl" />,
-    label: "Accepted Appointments",
-  },
-  {
-    to: "/academy/completed-appointments",
-    icon: <FaRegCheckCircle className="text-xl text-green-500" />,
-    label: "Completed Appointments",
-  },
-];
-
-const navItems = {
-  student: navItemsStudent,
-  "content manager": navItemsContentManager,
-  admin: navItemsAdmin,
-  academy: navItemsAcademy,
-};
+import { useTranslation } from "../context/TranslationContext";
+import ToggleLanguage from "./ToggleLanguage";
 
 function Sidebar({ user }) {
   const { register, handleSubmit } = useForm();
@@ -130,6 +39,101 @@ function Sidebar({ user }) {
   const { openModal, setOpenModal } = useUiContext();
   const { notification } = useGetNotification();
   const { editNotification } = useEditNotification();
+  const { t } = useTranslation();
+
+  const navItemsStudent = [
+    {
+      to: "/dashboard",
+      icon: <FiHome className="text-xl" />,
+      label: t("dashboard"),
+    },
+    {
+      to: "/roadmaps",
+      icon: <FiBookOpen className="text-xl" />,
+      label: t("roadmaps"),
+    },
+    {
+      to: "/certificates",
+      icon: <TbFileCertificate className="text-xl" />,
+      label: t("certificates"),
+    },
+    {
+      to: "/appointments",
+      icon: <GrScheduleNew className="text-xl" />,
+      label: t("appointments"),
+    },
+    {
+      to: "/recommendations",
+      icon: <MdOutlineRecommend className="text-xl" />,
+      label: t("recommendations"),
+    },
+  ];
+
+  const navItemsContentManager = [
+    {
+      to: "/roadmaps",
+      icon: <FiBookOpen className="text-xl" />,
+      label: t("roadmaps"),
+    },
+    {
+      to: "/add-roadmap",
+      icon: <FiBookOpen className="text-xl" />,
+      label: t("add_roadmap"),
+    },
+  ];
+
+  const navItemsAdmin = [
+    {
+      to: "/dashboard",
+      icon: <FiHome className="text-xl" />,
+      label: t("dashboard"),
+    },
+    {
+      to: "/admin/content-managers",
+      icon: <FaUsers className="text-xl" />,
+      label: t("content_managers"),
+    },
+    {
+      to: "/admin/academies",
+      icon: <FaUsers className="text-xl" />,
+      label: t("academies"),
+    },
+    {
+      label: t("notifications"),
+      icon: <FiBell className="text-xl" />,
+      button: true,
+    },
+  ];
+
+  const navItemsAcademy = [
+    {
+      to: "/dashboard",
+      icon: <FiHome className="text-xl" />,
+      label: t("dashboard"),
+    },
+    {
+      to: "/academy/pending-appointments",
+      icon: <RiCalendarScheduleLine className="text-xl" />,
+      label: t("pending_appointments"),
+    },
+    {
+      to: "/academy/accepted-appointments",
+      icon: <AiOutlineSchedule className="text-xl" />,
+      label: t("accepted_appointments"),
+    },
+    {
+      to: "/academy/completed-appointments",
+      icon: <FaRegCheckCircle className="text-xl text-green-500" />,
+      label: t("completed_appointments"),
+    },
+  ];
+
+  const navItems = {
+    student: navItemsStudent,
+    "content manager": navItemsContentManager,
+    admin: navItemsAdmin,
+    academy: navItemsAcademy,
+  };
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -183,12 +187,12 @@ function Sidebar({ user }) {
               onSubmit={handleSubmit(editNotificationHandler)}
             >
               <h2 className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-center text-2xl font-bold text-transparent">
-                Notification
+                {t("notification")}
               </h2>
               <div className="relative flex items-center gap-2 overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-4 text-white backdrop-blur-lg transition-all duration-300">
                 <input
                   type="text"
-                  placeholder="Message"
+                  placeholder={t("message")}
                   className="flex-1 bg-transparent text-lg outline-none"
                   defaultValue={notification?.text}
                   {...register("text")}
@@ -202,17 +206,18 @@ function Sidebar({ user }) {
         </div>
       )}
 
-      {/* Mobile Menu Toggle */}
+      {/* Mobile Menu Button */}
       <button
         onClick={toggleSidebar}
-        className="fixed top-5 left-5 z-50 rounded-full bg-gray-900/80 p-3 backdrop-blur-md transition-all duration-300 hover:bg-gray-800 md:hidden"
+        className="fixed top-4 left-4 z-50 rounded-lg bg-white/10 p-2 text-white md:hidden"
+        aria-label={t("toggle_menu")}
       >
-        <FiMenu className="text-2xl text-white" />
+        <FiMenu className="text-2xl" />
       </button>
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 z-40 flex h-full w-[280px] flex-col justify-between bg-gradient-to-b from-gray-900 to-gray-950 p-6 text-white shadow-2xl transition-transform duration-500 ease-in-out md:w-[300px] ${
+        className={`fixed top-0 left-0 z-40 flex h-full w-[280px] flex-col justify-between space-y-4 bg-gradient-to-b from-gray-900 to-gray-950 p-6 text-white shadow-2xl transition-transform duration-500 ease-in-out md:w-[300px] ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:static md:translate-x-0`}
       >
@@ -233,38 +238,48 @@ function Sidebar({ user }) {
               )}
             </div>
             <div>
-              <p className="text-sm text-gray-400">Welcome back</p>
-              <p className="font-bold text-white">{name || "MuDai"}</p>
+              <p className="text-sm text-gray-400">
+                {t("welcome_back_dashboard")}
+              </p>
+              <p className="font-bold text-white">{name || t("mudai")}</p>
             </div>
           </div>
         </div>
 
         {/* Navigation */}
-        <nav className="scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-gray-600 mt-8 flex-1 overflow-y-auto py-4">
+        <nav className="flex-1 space-y-2">
           <ul className="space-y-2">
             {navItems[role]?.map((item, index) => (
               <li key={index}>
                 {item.button ? (
                   <button
-                    className="flex w-full items-center gap-3 rounded-xl bg-gradient-to-r from-orange-500 to-orange-400 px-4 py-3 text-left font-medium text-white shadow-md transition-all duration-200 hover:from-orange-600 hover:to-orange-500 hover:shadow-lg"
                     onClick={handleOpenModal}
+                    className="group flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left transition-all hover:bg-white/10"
                   >
-                    <span className="text-xl">{item.icon}</span>
-                    <span>{item.label}</span>
+                    <span className="text-white/60 transition-colors group-hover:text-white">
+                      {item.icon}
+                    </span>
+                    <span className="font-medium text-white/80 transition-colors group-hover:text-white">
+                      {item.label}
+                    </span>
                   </button>
                 ) : (
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-300 ${
+                      `group flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left transition-all hover:bg-white/10 ${
                         isActive
-                          ? "bg-gradient-to-r from-blue-500/20 to-purple-500/20 font-medium text-white"
-                          : "text-gray-300 hover:bg-gray-800/50"
+                          ? "bg-white/10 text-white"
+                          : "text-white/60 hover:text-white"
                       }`
                     }
                   >
-                    <span className="text-xl">{item.icon}</span>
-                    <span>{item.label}</span>
+                    <span className="transition-colors group-hover:text-white">
+                      {item.icon}
+                    </span>
+                    <span className="font-medium transition-colors group-hover:text-white">
+                      {item.label}
+                    </span>
                   </NavLink>
                 )}
               </li>
@@ -272,27 +287,44 @@ function Sidebar({ user }) {
           </ul>
         </nav>
 
-        {/* Footer Actions */}
-        <div className="mt-auto border-t border-white/10 pt-6">
-          <div className="grid grid-cols-2 gap-3">
-            <button
-              onClick={logout}
-              className="group flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-red-600 to-red-500 px-3 py-3 text-white shadow-md transition-all duration-300 hover:from-red-500 hover:to-red-800 hover:shadow-lg"
-            >
-              <FiLogOut className="mb-1 -scale-x-100 text-2xl transition-transform group-hover:scale-110" />
-              <span className="text-xs font-medium">Logout</span>
-            </button>
+        {/* Footer */}
+        <div className="space-y-4">
+          <ToggleLanguage inSidebar={true} />
+          <NavLink
+            to="/settings"
+            className={({ isActive }) =>
+              `group flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left transition-all hover:bg-white/10 ${
+                isActive
+                  ? "bg-white/10 text-white"
+                  : "text-white/60 hover:text-white"
+              }`
+            }
+          >
+            <FiSettings className="text-xl transition-colors group-hover:text-white" />
+            <span className="font-medium transition-colors group-hover:text-white">
+              {t("settings")}
+            </span>
+          </NavLink>
 
-            <Link
-              to="/settings"
-              className="group from-primary-600 hover:to-primary-400 flex flex-col items-center justify-center rounded-xl bg-gradient-to-br to-blue-500 px-3 py-3 text-white shadow-md transition-all duration-300 hover:from-blue-500 hover:shadow-lg"
-            >
-              <FiSettings className="mb-1 text-2xl transition-transform group-hover:rotate-45" />
-              <span className="text-xs font-medium">Settings</span>
-            </Link>
-          </div>
+          <button
+            onClick={logout}
+            className="group flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left text-white/60 transition-all hover:bg-white/10 hover:text-white"
+          >
+            <FiLogOut className="text-xl transition-colors group-hover:text-white" />
+            <span className="font-medium transition-colors group-hover:text-white">
+              {t("logout")}
+            </span>
+          </button>
         </div>
       </aside>
+
+      {/* Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-30 bg-black/50 md:hidden"
+          onClick={toggleSidebar}
+        />
+      )}
     </>
   );
 }

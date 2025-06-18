@@ -7,11 +7,14 @@ import { useGetNotification } from "../../hooks/user/useGetNotification";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../../context/AuthProvider";
 import StudentQuestionaire from "./StudentQuestionaire";
+import { useTranslation } from "../../context/TranslationContext";
+
 function StudentDashboard() {
   const { notification: { text } = {} } = useGetNotification();
   const { studentData, isLoading } = useGetStudent();
   const { user } = useAuth();
-  console.log(user);
+  const { t } = useTranslation();
+
   const { roadmaps } = studentData || {};
   const [filter, setFilter] = useState("all");
   const filteredRoadmaps =
@@ -23,9 +26,9 @@ function StudentDashboard() {
             (roadmap) =>
               roadmap.completedStages !== roadmap.roadmap.stagesCount,
           );
+
   useEffect(
     function () {
-      console.log(text);
       if (text) {
         toast.success(text, {
           duration: 5000,
@@ -49,7 +52,7 @@ function StudentDashboard() {
           <div className="flex-1 p-8">
             <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <h3 className="text-3xl font-bold tracking-tight text-white">
-                Your Learning Journey
+                {t("your_learning_journey")}
               </h3>
               <div className="flex flex-wrap items-center gap-3">
                 {["all", "completed", "incomplete"].map((filterType) => (
@@ -62,7 +65,7 @@ function StudentDashboard() {
                     }`}
                     onClick={() => setFilter(filterType)}
                   >
-                    {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                    {t(filterType)}
                   </button>
                 ))}
               </div>
@@ -124,7 +127,7 @@ function StudentDashboard() {
                         >
                           {roadmap.completedStages ===
                           roadmap.roadmap.stagesCount
-                            ? "Completed"
+                            ? t("completed")
                             : `${roadmap.completedStages}/${roadmap.roadmap.stagesCount}`}
                         </span>
                       </div>

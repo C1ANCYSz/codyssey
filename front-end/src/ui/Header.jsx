@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
+import ToggleLanguage from "./ToggleLanguage";
+import { useTranslation } from "../context/TranslationContext";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { t } = useTranslation();
 
   // Handle scroll effect / تأثير التمرير
   useEffect(() => {
@@ -45,7 +48,7 @@ function Header() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="rounded-lg bg-white/10 p-2 transition-colors hover:bg-white/20 md:hidden"
-            aria-label="Toggle menu"
+            aria-label={t("toggle_menu")}
           >
             {isOpen ? (
               <FiX className="text-2xl text-white" />
@@ -71,7 +74,7 @@ function Header() {
                         className="block w-full rounded-lg px-4 py-2 text-white transition-colors hover:bg-white/10"
                         onClick={() => setIsOpen(false)}
                       >
-                        Login
+                        {t("login")}
                       </Link>
                     </li>
                     <li>
@@ -80,7 +83,7 @@ function Header() {
                         className="bg-primary-600 hover:bg-primary-700 block w-full rounded-lg px-4 py-2 text-center font-medium text-white transition-colors"
                         onClick={() => setIsOpen(false)}
                       >
-                        Sign Up
+                        {t("sign_up")}
                       </Link>
                     </li>
                   </ul>
@@ -93,14 +96,15 @@ function Header() {
           <div className="hidden items-center gap-6 md:flex">
             <Link to="/login">
               <button className="rounded-lg px-6 py-2 font-medium text-white transition-colors hover:bg-white/10">
-                Login
+                {t("login")}
               </button>
             </Link>
             <Link to="/signup">
               <button className="bg-primary-600 hover:bg-primary-700 hover:shadow-primary-600/25 rounded-lg px-6 py-2 font-medium text-white shadow-lg transition-colors">
-                Sign Up
+                {t("sign_up")}
               </button>
             </Link>
+            <ToggleLanguage />
           </div>
         </div>
       </div>
