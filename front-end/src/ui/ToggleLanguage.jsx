@@ -6,7 +6,7 @@ function ToggleLanguage({ inSidebar = false }) {
   return (
     <div>
       <button
-        className={`h-10 w-10 cursor-pointer border-white bg-gradient-to-br text-white uppercase transition-colors duration-200 ${inSidebar ? "to-primary-600 hover:to-primary-800 w-full rounded-md from-transparent" : "to-primary-600 hover:to-primary-800 w-10 rounded-full from-cyan-700"}`}
+        className={`h-10 w-10 cursor-pointer border-white bg-gradient-to-r text-white uppercase transition-colors duration-200 ${inSidebar ? "hover:to-primary-800 w-full rounded-md from-blue-400 to-purple-500" : "to-primary-600 hover:to-primary-800 w-10 rounded-full from-cyan-700"}`}
         onClick={toggleLanguage}
       >
         {currentLanguage === "en" ? "AR" : "EN"}

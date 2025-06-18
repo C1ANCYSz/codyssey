@@ -33,7 +33,7 @@ function Roadmaps() {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="from-primary-900 flex min-h-screen bg-gradient-to-br to-black">
+    <div className="flex min-h-screen bg-gradient-to-br from-gray-900 to-black">
       <div className="container mx-auto p-8">
         <div className="space-y-12">
           <div className="flex flex-wrap items-center justify-center gap-4">

@@ -30,7 +30,7 @@ import HelpCenter from "./pages/HelpCenter";
 import Faqs from "./pages/Faqs";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-
+import Error from "./ui/Error";
 function App() {
   return (
     <Router>
@@ -157,6 +157,7 @@ function App() {
               <Route path="roadmaps/:roadmapId" element={<Roadmap />} />
               <Route path="verify-email" element={<VerifyEmail />} />
               <Route path="reset-password/:token" element={<ResetPassword />} />
+              <Route path="*" element={<Error error={"404 not found"} />} />
             </Routes>
 
             <Toaster
