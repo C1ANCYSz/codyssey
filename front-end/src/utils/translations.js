@@ -469,6 +469,42 @@ terms_governing_law_paragraph: "These Terms shall be governed and construed in a
 terms_contact_heading: "Contact Information",
 terms_contact_paragraph: "If you have any questions about these Terms, please contact us at support@codyssey.com.",
 
+// Privacy Policy Page (new additions)
+privacy_policy_title: "Privacy Policy",
+
+privacy_introduction_heading: "Introduction",
+privacy_introduction_paragraph1: "This Privacy Policy describes how Codyssey ('we', 'us', or 'our') collects, uses, and discloses your information when you use our website, applications, and services (collectively, the 'Service').",
+privacy_introduction_paragraph2: "By using the Service, you agree to the collection and use of information in accordance with this policy. If you do not agree with the terms of this policy, please do not access or use the Service.",
+
+privacy_info_collect_heading: "Information We Collect",
+privacy_info_collect_paragraph1: "We collect several types of information from and about users of our Service:",
+privacy_info_collect_item1_title: "Personal Information",
+privacy_info_collect_item1_desc: "Information by which you may be personally identified, such as name, email address, and other contact details when you register for an account.",
+privacy_info_collect_item2_title: "Usage Data",
+privacy_info_collect_item2_desc: "Information automatically collected about your activity on the Service, including IP address, browser type, pages visited, and time spent on pages.",
+privacy_info_collect_item3_title: "Device Information",
+privacy_info_collect_item3_desc: "Information about the device you use to access the Service, such as device type, operating system, and unique device identifiers.",
+
+privacy_how_use_info_heading: "How We Use Your Information",
+privacy_how_use_info_item1: "To provide, maintain, and improve our Service.",
+privacy_how_use_info_item2: "To personalize your experience and deliver tailored content, including roadmaps and recommendations.",
+privacy_how_use_info_item3: "To communicate with you, including sending updates, security alerts, and support messages.",
+privacy_how_use_info_item4: "To monitor and analyze trends, usage, and activities in connection with our Service.",
+
+privacy_sharing_info_heading: "Sharing Your Information",
+privacy_sharing_info_paragraph: "We do not sell your personal data to third parties. We may share information with third-party service providers who perform services on our behalf (e.g., hosting, analytics), or as required by law.",
+
+privacy_data_security_heading: "Data Security",
+privacy_data_security_paragraph: "We implement reasonable security measures designed to protect your personal information from unauthorized access, use, or disclosure. However, no internet transmission is entirely secure.",
+
+privacy_your_rights_heading: "Your Data Protection Rights",
+privacy_your_rights_paragraph: "You have certain rights regarding your personal data, including the right to access, correct, delete, or restrict its processing. Please contact us to exercise these rights.",
+
+privacy_changes_heading: "Changes to This Privacy Policy",
+privacy_changes_paragraph: "We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the 'Last Updated' date.",
+
+privacy_contact_heading: "Contact Us",
+privacy_contact_paragraph: "If you have any questions about this Privacy Policy, please contact us at privacy@codyssey.com.",
   },
 
   ar: {
@@ -935,5 +971,41 @@ terms_governing_law_paragraph: "تخضع هذه الشروط وتفسر وفقً
 
 terms_contact_heading: "معلومات الاتصال",
 terms_contact_paragraph: "إذا كان لديك أي أسئلة حول هذه الشروط، يرجى الاتصال بنا على support@codyssey.com.",
+
+privacy_policy_title: "سياسة الخصوصية",
+
+privacy_introduction_heading: "مقدمة",
+privacy_introduction_paragraph1: "تصف سياسة الخصوصية هذه كيف تقوم كوديسي ('نحن' أو 'لنا' أو 'خاصتنا') بجمع واستخدام والكشف عن معلوماتك عند استخدامك لموقعنا الإلكتروني وتطبيقاتنا وخدماتنا (يُشار إليها مجتمعة باسم 'الخدمة').",
+privacy_introduction_paragraph2: "باستخدامك للخدمة، فإنك توافق على جمع واستخدام المعلومات وفقًا لهذه السياسة. إذا كنت لا توافق على شروط هذه السياسة، يرجى عدم الوصول إلى الخدمة أو استخدامها.",
+
+privacy_info_collect_heading: "المعلومات التي نجمعها",
+privacy_info_collect_paragraph1: "نحن نجمع عدة أنواع من المعلومات من وعن مستخدمي خدمتنا:",
+privacy_info_collect_item1_title: "المعلومات الشخصية",
+privacy_info_collect_item1_desc: "المعلومات التي يمكن من خلالها التعرف عليك شخصيًا، مثل الاسم وعنوان البريد الإلكتروني وتفاصيل الاتصال الأخرى عند تسجيلك لحساب.",
+privacy_info_collect_item2_title: "بيانات الاستخدام",
+privacy_info_collect_item2_desc: "المعلومات التي يتم جمعها تلقائيًا حول نشاطك على الخدمة، بما في ذلك عنوان IP ونوع المتصفح والصفحات التي تمت زيارتها والوقت المستغرق في الصفحات.",
+privacy_info_collect_item3_title: "معلومات الجهاز",
+privacy_info_collect_item3_desc: "معلومات حول الجهاز الذي تستخدمه للوصول إلى الخدمة، مثل نوع الجهاز ونظام التشغيل ومعرفات الجهاز الفريدة.",
+
+privacy_how_use_info_heading: "كيف نستخدم معلوماتك",
+privacy_how_use_info_item1: "لتقديم خدمتنا وصيانتها وتحسينها.",
+privacy_how_use_info_item2: "لتخصيص تجربتك وتقديم محتوى مخصص، بما في ذلك خرائط الطريق والتوصيات.",
+privacy_how_use_info_item3: "للتواصل معك، بما في ذلك إرسال التحديثات وتنبيهات الأمان ورسائل الدعم.",
+privacy_how_use_info_item4: "لمراقبة وتحليل الاتجاهات والاستخدام والأنشطة المتعلقة بخدمتنا.",
+
+privacy_sharing_info_heading: "مشاركة معلوماتك",
+privacy_sharing_info_paragraph: "نحن لا نبيع بياناتك الشخصية لأطراف ثالثة. قد نشارك المعلومات مع مزودي خدمة خارجيين يقومون بتقديم خدمات نيابة عنا (مثل الاستضافة والتحليلات)، أو كما يقتضي القانون.",
+
+privacy_data_security_heading: "أمن البيانات",
+privacy_data_security_paragraph: "نحن نطبق تدابير أمنية معقولة مصممة لحماية معلوماتك الشخصية من الوصول غير المصرح به أو الاستخدام أو الكشف عنها. ومع ذلك، لا يوجد نقل عبر الإنترنت آمن تمامًا.",
+
+privacy_your_rights_heading: "حقوقك في حماية البيانات",
+privacy_your_rights_paragraph: "لديك حقوق معينة فيما يتعلق ببياناتك الشخصية، بما في ذلك الحق في الوصول إلى بياناتك أو تصحيحها أو حذفها أو تقييد معالجتها. يرجى الاتصال بنا لممارسة هذه الحقوق.",
+
+privacy_changes_heading: "التغييرات على سياسة الخصوصية هذه",
+privacy_changes_paragraph: "قد نقوم بتحديث سياسة الخصوصية الخاصة بنا من وقت لآخر. سنخطرك بأي تغييرات عن طريق نشر سياسة الخصوصية الجديدة على هذه الصفحة وتحديث تاريخ 'آخر تحديث'.",
+
+privacy_contact_heading: "اتصل بنا",
+privacy_contact_paragraph: "إذا كان لديك أي أسئلة حول سياسة الخصوصية هذه، يرجى الاتصال بنا على privacy@codyssey.com.",
   },
 };

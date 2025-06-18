@@ -29,6 +29,7 @@ import { TranslationProvider } from "./context/TranslationContext";
 import HelpCenter from "./pages/HelpCenter";
 import Faqs from "./pages/Faqs";
 import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
   return (
@@ -150,6 +151,7 @@ function App() {
                 <Route path="help" element={<HelpCenter />} />
                 <Route path="faqs" element={<Faqs />} />
                 <Route path="terms" element={<TermsOfService />} />
+                <Route path="privacy" element={<PrivacyPolicy />} />
               </Route>
 
               <Route path="roadmaps/:roadmapId" element={<Roadmap />} />
