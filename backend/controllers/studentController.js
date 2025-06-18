@@ -117,7 +117,11 @@ exports.roadmapProgress = async (req, res, next) => {
     roadmap: roadmap._id,
   });
 
-  if (userRoadmap.completed && !certificate) {
+  if (
+    userRoadmap.completed &&
+    !certificate &&
+    roadmap.id !== '685069f741370b91d905a3d5' // Exclude default roadmap
+  ) {
     await Certificate.create({
       user: user._id,
       roadmap: roadmap._id,

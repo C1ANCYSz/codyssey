@@ -43,11 +43,13 @@ roadmapSchema.pre('save', async function (next) {
       if (res.ok) {
         this.image = url;
       } else {
-        this.image = 'https://placehold.co/600x400/png';
+        this.image =
+          '   https://cdn-icons-png.flaticon.com/512/4727/4727512.png '; // default icon if fetch fails
       }
     } catch (err) {
       console.error('Error fetching icon:', err);
-      this.image = 'https://placehold.co/600x400/png';
+      this.image =
+        '   https://cdn-icons-png.flaticon.com/512/4727/4727512.png '; // default icon if fetch fails
     }
   }
 

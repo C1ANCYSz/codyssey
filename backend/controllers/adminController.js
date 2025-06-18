@@ -12,7 +12,7 @@ exports.getDashboard = async (req, res, next) => {
   const academies = await User.countDocuments({ role: 'academy' });
   const students = await User.countDocuments({ role: 'student' });
 
-  const topRoadmaps = await UserRoadmap.aggregate([
+  let topRoadmaps = await UserRoadmap.aggregate([
     { $match: { completed: true } },
     {
       $lookup: {
@@ -23,6 +23,10 @@ exports.getDashboard = async (req, res, next) => {
       },
     },
     { $unwind: '$roadmap' },
+
+    // Exclude the specific roadmap title here
+    { $match: { 'roadmap.title': { $ne: 'How to find Jobs online' } } },
+
     {
       $group: {
         _id: '$roadmap._id',
