@@ -8,6 +8,8 @@ exports.generateCertificateHTML = (user, roadmap, date) => {
       <title>Certificate</title>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libre+Baskerville:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=poppins&family=Libre+Baskerville:wght@400;700&display=swap');
+
 
         body {
         scale:0.9;
@@ -65,7 +67,7 @@ exports.generateCertificateHTML = (user, roadmap, date) => {
         }
 
         .name {
-          font-family: 'Great Vibes', cursive;
+          font-family: 'poppins', cursive;
           font-size: 60px;
           color: #2c3e50;
           margin: 20px 0;

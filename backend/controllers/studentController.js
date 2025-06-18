@@ -1,18 +1,16 @@
-const User = require("../models/User");
-const Roadmap = require("../models/Roadmap");
-const UserRoadmap = require("../models/UserRoadmap");
-const Certificate = require("../models/Certificate");
-const Appointment = require("../models/Appointment");
-const Question = require("../models/Question");
-const RecommendedRoadmap = require("../models/RecommenedRoadmap");
-const AppError = require("../utils/AppError");
-
-const path = require("path");
-const fs = require("fs");
-
-const puppeteer = require("puppeteer");
-
-const { generateCertificateHTML } = require("../utils/generateCertificateHTML");
+const User = require('../models/User');
+const Roadmap = require('../models/Roadmap');
+const UserRoadmap = require('../models/UserRoadmap');
+const Certificate = require('../models/Certificate');
+const Appointment = require('../models/Appointment');
+const Question = require('../models/Question');
+const RecommendedRoadmap = require('../models/RecommenedRoadmap');
+const AppError = require('../utils/AppError');
+const puppeteer = require('puppeteer');
+const path = require('path');
+const fs = require('fs');
+const { chromium } = require('playwright');
+const { generateCertificateHTML } = require('../utils/generateCertificateHTML');
 
 exports.enrollInRoadmap = async (req, res, next) => {
   const roadmapId = req.params.id;
@@ -24,11 +22,11 @@ exports.enrollInRoadmap = async (req, res, next) => {
     UserRoadmap.findOne({ user: userId, roadmap: roadmapId }),
   ]);
 
-  if (!roadmap) return next(new AppError("Roadmap not found", 404));
-  if (!user) return next(new AppError("User not found", 404));
+  if (!roadmap) return next(new AppError('Roadmap not found', 404));
+  if (!user) return next(new AppError('User not found', 404));
 
   if (existingEnrollment) {
-    return next(new AppError("You are already enrolled in this roadmap", 400));
+    return next(new AppError('You are already enrolled in this roadmap', 400));
   }
 
   await UserRoadmap.create({
@@ -38,7 +36,7 @@ exports.enrollInRoadmap = async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "Successfully enrolled in roadmap",
+    message: 'Successfully enrolled in roadmap',
     data: { roadmap },
   });
 };
@@ -48,16 +46,16 @@ exports.getDashboard = async (req, res, next) => {
   const user = await User.findById(userId).lean();
   const userRoadmaps = await UserRoadmap.find({ user: userId })
     .populate({
-      path: "roadmap",
-      select: "title image stagesCount",
+      path: 'roadmap',
+      select: 'title image stagesCount',
     })
-    .select("roadmap completedStages completed _id")
+    .select('roadmap completedStages completed _id')
     .lean();
   user.roadmaps = userRoadmaps;
 
-  if (!user) return next(new AppError("User not found", 404));
+  if (!user) return next(new AppError('User not found', 404));
 
-  if (user.role === "student") {
+  if (user.role === 'student') {
     return res.status(200).json({
       success: true,
       data: {
@@ -74,8 +72,8 @@ exports.roadmapProgress = async (req, res, next) => {
   const { id } = req.params;
   const { completedStages } = req.body;
 
-  if (typeof completedStages !== "number" || completedStages < 0) {
-    return next(new AppError("Invalid or missing completedStages", 400));
+  if (typeof completedStages !== 'number' || completedStages < 0) {
+    return next(new AppError('Invalid or missing completedStages', 400));
   }
 
   const [roadmap, user] = await Promise.all([
@@ -84,11 +82,11 @@ exports.roadmapProgress = async (req, res, next) => {
   ]);
 
   if (!roadmap) {
-    return next(new AppError("Roadmap not found", 404));
+    return next(new AppError('Roadmap not found', 404));
   }
 
   if (!user) {
-    return next(new AppError("User not found", 404));
+    return next(new AppError('User not found', 404));
   }
 
   const userRoadmap = await UserRoadmap.findOne({
@@ -97,7 +95,7 @@ exports.roadmapProgress = async (req, res, next) => {
   });
 
   if (!userRoadmap) {
-    return next(new AppError("User is not enrolled in this roadmap", 404));
+    return next(new AppError('User is not enrolled in this roadmap', 404));
   }
 
   if (completedStages > roadmap.stagesCount) {
@@ -131,7 +129,7 @@ exports.roadmapProgress = async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: userRoadmap.completed ? "Roadmap completed!" : "Progress updated.",
+    message: userRoadmap.completed ? 'Roadmap completed!' : 'Progress updated.',
     completed: userRoadmap.completed,
   });
 };
@@ -141,8 +139,8 @@ exports.getCertificates = async (req, res, next) => {
     const userId = req.user._id;
     const certificates = await Certificate.find({ user: userId })
       .populate({
-        path: "roadmap",
-        select: "title image",
+        path: 'roadmap',
+        select: 'title image',
       })
       .lean();
 
@@ -175,21 +173,16 @@ exports.downloadCertificate = async (req, res, next) => {
   try {
     const { id } = req.params;
     const userId = req.user._id;
-    const user = await User.findById(userId);
 
     const certificate = await Certificate.findOne({
       user: userId,
       _id: id,
     }).populate({
-      path: "roadmap",
-      select: "title ",
+      path: 'roadmap',
+      select: 'title',
     });
 
-    if (!certificate) {
-      return next(new AppError("Certificate not found", 404));
-    }
-
-    if (!user) return next(new AppError("User not found", 404));
+    if (!certificate) return next(new AppError('Certificate not found', 404));
 
     const certificateHTML = generateCertificateHTML(
       req.user,
@@ -197,34 +190,33 @@ exports.downloadCertificate = async (req, res, next) => {
       certificate.date.toLocaleDateString()
     );
 
-    const browser = await puppeteer.launch();
+    const browser = await chromium.launch();
     const page = await browser.newPage();
-    await page.setContent(certificateHTML);
-    await page.emulateMediaType("screen");
 
-    const filePath = path.join(__dirname, "certificate.pdf");
-    await page.pdf({
-      path: filePath,
-      format: "A4",
-      landscape: true,
+    // Set HTML content
+    await page.setContent(certificateHTML, { waitUntil: 'domcontentloaded' });
+
+    // Optional: Set page style for screen media
+    await page.emulateMedia('screen');
+
+    // Generate PDF
+    const pdfBuffer = await page.pdf({
+      format: 'A4',
+      landscape: false,
       printBackground: true,
     });
 
     await browser.close();
 
-    const pdfBuffer = fs.readFileSync(filePath);
-
-    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader('Content-Type', 'application/pdf');
     res.setHeader(
-      "Content-Disposition",
-      "attachment; filename=certificate.pdf"
+      'Content-Disposition',
+      'attachment; filename=certificate.pdf'
     );
-
     res.send(pdfBuffer);
-
-    fs.unlinkSync(filePath);
   } catch (err) {
-    next(err);
+    console.error('Certificate PDF generation error:', err);
+    next(new AppError('Failed to generate certificate', 500));
   }
 };
 
@@ -234,25 +226,25 @@ exports.updateStudent = async (req, res, next) => {
   const { password, name, email } = req.body;
   const user = await User.findById(id);
   if (!user) {
-    return next(new AppError("User not found", 404));
+    return next(new AppError('User not found', 404));
   }
   if (password) user.password = password;
 
   if (name) user.name = name;
   if (email) user.email = email;
   await user.save({ validateBeforeSave: false });
-  res.json({ success: true, message: "User updated successfully" });
+  res.json({ success: true, message: 'User updated successfully' });
 };
 
 exports.getAppointments = async (req, res, next) => {
   const appointments = await Appointment.find({ user: req.user.id })
     .populate({
-      path: "roadmap",
-      select: "title image",
+      path: 'roadmap',
+      select: 'title image',
     })
     .populate({
-      path: "academy",
-      select: "name email image",
+      path: 'academy',
+      select: 'name email image',
     });
 
   if (!appointments) {
@@ -263,12 +255,12 @@ exports.getAppointments = async (req, res, next) => {
 };
 
 exports.getBookAppointments = async (req, res, next) => {
-  const academies = await User.find({ role: "academy" });
+  const academies = await User.find({ role: 'academy' });
 
   if (!academies) {
     return res.json({
       success: true,
-      message: "No academies found",
+      message: 'No academies found',
       data: {},
     });
   }
@@ -282,12 +274,12 @@ exports.bookAppointment = async (req, res, next) => {
 
   const user = await User.findById(id);
   if (!user) {
-    return next(new AppError("No user found with this ID", 404));
+    return next(new AppError('No user found with this ID', 404));
   }
 
   const roadmap = await Roadmap.findById(roadmapId);
   if (!roadmap) {
-    return next(new AppError("No roadmap found with this ID", 404));
+    return next(new AppError('No roadmap found with this ID', 404));
   }
 
   const userRoadmap = await UserRoadmap.findOne({
@@ -295,20 +287,20 @@ exports.bookAppointment = async (req, res, next) => {
     roadmap: roadmapId,
   });
   if (!userRoadmap || !userRoadmap.completed) {
-    return next(new AppError("You are not enrolled in this roadmap", 400));
+    return next(new AppError('You are not enrolled in this roadmap', 400));
   }
 
   const academy = await User.findById(academyId);
   if (!academy) {
-    return next(new AppError("No academy found with this ID", 404));
+    return next(new AppError('No academy found with this ID', 404));
   }
 
   if (!academy.locations.includes(location)) {
-    return next(new AppError("This academy does not have this location", 400));
+    return next(new AppError('This academy does not have this location', 400));
   }
 
   if (!location || !roadmapId || !academyId) {
-    return next(new AppError("Please provide all the required fields", 400));
+    return next(new AppError('Please provide all the required fields', 400));
   }
 
   const sameAppointment = await Appointment.findOne({
@@ -318,7 +310,7 @@ exports.bookAppointment = async (req, res, next) => {
   });
   if (sameAppointment) {
     return next(
-      new AppError("You already have an appointment for this roadmap", 400)
+      new AppError('You already have an appointment for this roadmap', 400)
     );
   }
 
@@ -332,7 +324,7 @@ exports.bookAppointment = async (req, res, next) => {
 
   res.status(201).json({
     success: true,
-    message: "Successfully created an appointment",
+    message: 'Successfully created an appointment',
     data: { appointment },
   });
 };
@@ -343,20 +335,20 @@ exports.deleteAppointment = async (req, res, next) => {
     const userId = req.user.id;
 
     const user = await User.findById(userId);
-    if (!user) return next(new AppError("No user found with this ID", 404));
+    if (!user) return next(new AppError('No user found with this ID', 404));
 
     const appointment = await Appointment.findById(id);
 
     if (!appointment)
-      return next(new AppError("No appointment found with this ID", 404));
+      return next(new AppError('No appointment found with this ID', 404));
 
     if (
-      user.role !== "student" ||
+      user.role !== 'student' ||
       appointment.user.toString() !== userId ||
-      !["pending", "rejected"].includes(appointment.status)
+      !['pending', 'rejected'].includes(appointment.status)
     ) {
       return next(
-        new AppError("You are not allowed to delete this appointment", 403)
+        new AppError('You are not allowed to delete this appointment', 403)
       );
     }
 
@@ -364,7 +356,7 @@ exports.deleteAppointment = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: "Successfully deleted an appointment",
+      message: 'Successfully deleted an appointment',
     });
   } catch (error) {
     next(error);
@@ -376,17 +368,17 @@ exports.answerQuestionnare = async (req, res, next) => {
     const { selectedAnswers } = req.body;
 
     if (!Array.isArray(selectedAnswers) || selectedAnswers.length === 0) {
-      return next(new AppError("No answers provided", 400));
+      return next(new AppError('No answers provided', 400));
     }
 
     const questions = await Question.find({});
-    const roadmaps = await Roadmap.find({}, "title category image");
+    const roadmaps = await Roadmap.find({}, 'title category image');
 
     if (!questions.length) {
-      return next(new AppError("No questions found", 404));
+      return next(new AppError('No questions found', 404));
     }
     if (!roadmaps.length) {
-      return next(new AppError("No roadmaps found", 404));
+      return next(new AppError('No roadmaps found', 404));
     }
 
     const roadmapMap = new Map();
@@ -405,7 +397,7 @@ exports.answerQuestionnare = async (req, res, next) => {
 
       if (answer && Array.isArray(answer.impacts)) {
         answer.impacts.forEach((impact) => {
-          if (impact.roadmap && typeof impact.score === "number") {
+          if (impact.roadmap && typeof impact.score === 'number') {
             const roadmapTitle = impact.roadmap.toLowerCase();
             if (roadmapMap.has(roadmapTitle)) {
               impactedRoadmapsCount++;
@@ -419,7 +411,7 @@ exports.answerQuestionnare = async (req, res, next) => {
     if (impactedRoadmapsCount === 0) {
       return next(
         new AppError(
-          "Not enough valid answers to generate recommendations",
+          'Not enough valid answers to generate recommendations',
           404
         )
       );
@@ -458,7 +450,7 @@ exports.answerQuestionnare = async (req, res, next) => {
 
     const user = await User.findById(req.user._id);
     if (!user) {
-      return next(new AppError("User not found", 404));
+      return next(new AppError('User not found', 404));
     }
 
     user.tookQuestionnaire = true;
@@ -479,15 +471,15 @@ exports.answerQuestionnare = async (req, res, next) => {
       }),
     });
   } catch (error) {
-    console.error("Error submitting answers:", error);
-    return next(new AppError("Server error while submitting answers", 500));
+    console.error('Error submitting answers:', error);
+    return next(new AppError('Server error while submitting answers', 500));
   }
 };
 
 exports.skipQuestionnare = async (req, res, next) => {
   const user = await User.findById(req.user._id);
   if (!user) {
-    return next(new AppError("User not found", 404));
+    return next(new AppError('User not found', 404));
   }
 
   user.tookQuestionnaire = true;
@@ -495,7 +487,7 @@ exports.skipQuestionnare = async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "Questionnaire skipped successfully",
+    message: 'Questionnaire skipped successfully',
   });
 };
 
@@ -504,10 +496,10 @@ exports.getRecommendedRoadmaps = async (req, res, next) => {
     const recommended = await RecommendedRoadmap.find({
       user: req.user._id,
     })
-      .select("roadmaps -_id")
+      .select('roadmaps -_id')
       .populate({
-        path: "roadmaps",
-        select: "title image _id category",
+        path: 'roadmaps',
+        select: 'title image _id category',
       });
 
     if (!recommended.length) {
@@ -534,14 +526,35 @@ exports.getRecommendedRoadmaps = async (req, res, next) => {
 };
 
 exports.getQuestionnare = async (req, res, next) => {
-  const questions = await Question.find({}).select("question answers.text"); // Selecting only 'question' and 'answers.text'
+  const questions = await Question.find({}).select('question answers.text'); // Selecting only 'question' and 'answers.text'
 
   if (!questions) {
-    return next(new AppError("No Questions found", 404));
+    return next(new AppError('No Questions found', 404));
   }
 
   res.status(200).json({
-    status: "success",
+    status: 'success',
     questions,
+  });
+};
+
+exports.defaultRoadmap = async (userId) => {
+  const roadmap = await Roadmap.findById('685069f741370b91d905a3d5');
+  if (!roadmap) {
+    throw new AppError('Default roadmap not found', 404);
+  }
+
+  const existingEnrollment = await UserRoadmap.findOne({
+    user: userId,
+    roadmap: roadmap._id,
+  });
+
+  if (existingEnrollment) {
+    return;
+  }
+
+  await UserRoadmap.create({
+    user: userId,
+    roadmap: roadmap._id,
   });
 };

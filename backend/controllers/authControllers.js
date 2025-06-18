@@ -15,12 +15,15 @@ const {
   sendPasswordResetEmail,
   sendPasswordResetSuccess,
 } = require('../mailing/emails');
+
+const { defaultRoadmap } = require('../controllers/studentController');
 /* 
 
 
 
 
 */
+
 const tokenAndCookie = (id, res) => {
   const token = jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE,
@@ -46,10 +49,7 @@ exports.login = async (req, res, next) => {
     );
   }
   email = validator.escape(email);
-
   const user = await User.findOne({ email: email }).select('+password');
-
-  //to mitigate bruce force attack [TO BE IMPROVED]
 
   if (!user || !(await user.comparePassword(password))) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -137,6 +137,13 @@ exports.signUp = async (req, res, next) => {
 
   tokenAndCookie(newUser._id, res);
 
+  try {
+    await defaultRoadmap(newUser._id);
+  } catch (err) {
+    return next(err);
+  }
+
+  console.log(newUser);
   res.status(201).json({
     success: true,
     user: {

@@ -4,3 +4,7 @@ backend/.env
 frontend/node_modules
 frontend/.env
 backend/.prettierrc
+backend/meta.json
+backend/roadmapSeeding.js
+backend/playlist_data.json
+backend/dummy.js

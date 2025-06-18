@@ -24,7 +24,6 @@ exports.getRoadmaps = async (req, res, next) => {
 
 exports.getRoadmap = async (req, res, next) => {
   const { id } = req.params;
-  const userId = req.user?._id;
 
   const roadmap = await Roadmap.findById(id).lean();
   if (!roadmap) {
@@ -50,7 +49,11 @@ exports.getRoadmapStage = async (req, res, next) => {
   const currentUserId = req.user._id;
 
   const user = await User.findById(currentUserId).lean();
-  const userRoadmap = await UserRoadmap.find({
+  const isStudent = user?.role === 'student';
+
+  if (!user) return next(new AppError('User not found', 404));
+
+  const userRoadmap = await UserRoadmap.findOne({
     user: currentUserId,
     roadmap: id,
   })
@@ -61,16 +64,11 @@ exports.getRoadmapStage = async (req, res, next) => {
     .lean()
     .select('roadmap completedStages completed _id');
 
-  if (!user) return next(new AppError('User not found', 404));
-
-  if (!userRoadmap && req.user.role === 'student') {
+  if (!userRoadmap && isStudent) {
     return next(new AppError('Enroll in the roadmap first', 404));
   }
 
-  if (
-    userRoadmap?.completedStages < stageNumber - 1 &&
-    user.role === 'student'
-  ) {
+  if (isStudent && stageNumber > userRoadmap.completedStages + 1) {
     return next(
       new AppError(
         'Complete the previous stage before progressing to the next stage',
@@ -95,9 +93,7 @@ exports.getRoadmapStage = async (req, res, next) => {
 
   if (stage.type === 'quiz') {
     const quizStage = await QuizStage.findById(stage._id).lean();
-
     if (!quizStage) return next(new AppError('Quiz stage not found', 404));
-
     return res.json({
       success: true,
       data: { stage: quizStage },

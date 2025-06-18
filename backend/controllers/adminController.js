@@ -11,7 +11,6 @@ exports.getDashboard = async (req, res, next) => {
   });
   const academies = await User.countDocuments({ role: 'academy' });
   const students = await User.countDocuments({ role: 'student' });
-  //get top 5 roadmaps and how many students completed them
 
   const topRoadmaps = await UserRoadmap.aggregate([
     { $match: { completed: true } },
@@ -71,7 +70,7 @@ exports.getDashboard = async (req, res, next) => {
       },
     },
     {
-      $sort: { _id: 1 }, // ascending date order
+      $sort: { _id: 1 },
     },
     {
       $project: {
