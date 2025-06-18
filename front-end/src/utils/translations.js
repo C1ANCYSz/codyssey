@@ -416,6 +416,29 @@ export const translations = {
 
     need_more_help: "Need Further Assistance?",
     need_more_help_desc: "If you ever get stuck or need help with specific problems, you can always head over to our dedicated Contact or FAQ pages for more support.",
+
+    // FAQs Page (new additions)
+    faq_page_title: "Frequently Asked Questions",
+    faq_what_is_codyssey_q: "What is Codyssey?",
+    faq_what_is_codyssey_a: "Codyssey is a personalized e-learning platform focused on programming and computer science. It helps users follow structured roadmaps based on their individual goals.",
+    faq_is_codyssey_free_q: "Is Codyssey free to use?",
+    faq_is_codyssey_free_a: "Yes! Most of Codyssey's features and learning resources are completely free. Some optional features may require premium access in the future.",
+    faq_how_create_account_q: "How do I create an account?",
+    faq_how_create_account_a: "Simply click on the 'Sign Up' button on the homepage, fill in your details, and verify your email to get started.",
+    faq_use_without_login_q: "Can I use Codyssey without logging in?",
+    faq_use_without_login_a: "You can browse basic information, but to access personalized roadmaps, save progress, or book appointments, you need to log in.",
+    faq_how_roadmaps_generated_q: "How are roadmaps generated?",
+    faq_how_roadmaps_generated_a: "When you sign up, Codyssey asks you a few questions about your goals. Based on your answers, it generates a custom roadmap to guide your learning.",
+    faq_switch_tracks_q: "Can I switch tracks or change my goals?",
+    faq_switch_tracks_a: "Yes, you can switch or restart your roadmap at any time from the dashboard settings.",
+    faq_how_appointments_work_q: "How do appointments work?",
+    faq_how_appointments_work_a: "Once you complete a stage in your roadmap, you may be eligible to book a session with an expert for help or evaluation. Appointment availability depends on your academy.",
+    faq_data_secure_q: "Is my data secure?",
+    faq_data_secure_a: "Yes. Codyssey values user privacy and uses secure methods to protect your account data and personal information.",
+    faq_forgot_password_q: "What if I forget my password?",
+    faq_forgot_password_a: "You can click 'Forgot Password' on the login page. We’ll send you a password reset link to your registered email.",
+    faq_no_verification_email_q: "I didn’t receive the verification email. What should I do?",
+    faq_no_verification_email_a: "Check your spam folder. If it’s not there, go back to the login page and click on 'Resend verification email.'",
   },
 
   ar: {
@@ -830,5 +853,28 @@ export const translations = {
 
     need_more_help: "هل تحتاج إلى مساعدة إضافية؟",
     need_more_help_desc: "إذا واجهت أي مشكلة أو احتجت إلى المساعدة، يمكنك دائمًا زيارة صفحات التواصل أو الأسئلة الشائعة للحصول على الدعم.",
+
+    // FAQs Page (new additions)
+    faq_page_title: "الأسئلة المتكررة",
+    faq_what_is_codyssey_q: "ما هو كوديسي؟",
+    faq_what_is_codyssey_a: "كوديسي هو منصة تعليمية مخصصة تركز على البرمجة وعلوم الكمبيوتر. يساعد المستخدمين على اتباع خرائط طريق منظمة بناءً على أهدافهم الفردية.",
+    faq_is_codyssey_free_q: "هل كوديسي مجاني للاستخدام؟",
+    faq_is_codyssey_free_a: "نعم! معظم ميزات وموارد التعلم في كوديسي مجانية تمامًا. قد تتطلب بعض الميزات الاختيارية وصولًا مميزًا في المستقبل.",
+    faq_how_create_account_q: "كيف أقوم بإنشاء حساب؟",
+    faq_how_create_account_a: "ما عليك سوى النقر على زر 'التسجيل' في الصفحة الرئيسية، وملء بياناتك، والتحقق من بريدك الإلكتروني للبدء.",
+    faq_use_without_login_q: "هل يمكنني استخدام كوديسي بدون تسجيل الدخول؟",
+    faq_use_without_login_a: "يمكنك تصفح المعلومات الأساسية، ولكن للوصول إلى خرائط الطريق المخصصة، وحفظ التقدم، أو حجز المواعيد، تحتاج إلى تسجيل الدخول.",
+    faq_how_roadmaps_generated_q: "كيف يتم إنشاء خرائط الطريق؟",
+    faq_how_roadmaps_generated_a: "عند التسجيل، يطرح عليك كوديسي بعض الأسئلة حول أهدافك. بناءً على إجاباتك، يقوم بإنشاء خريطة طريق مخصصة لتوجيه تعلمك.",
+    faq_switch_tracks_q: "هل يمكنني تبديل المسارات أو تغيير أهدافي؟",
+    faq_switch_tracks_a: "نعم، يمكنك تبديل أو إعادة تشغيل خريطة طريقك في أي وقت من إعدادات لوحة التحكم.",
+    faq_how_appointments_work_q: "كيف تعمل المواعيد؟",
+    faq_how_appointments_work_a: "بمجرد إكمال مرحلة في خريطة طريقك، قد تكون مؤهلاً لحجز جلسة مع خبير للحصول على المساعدة أو التقييم. يعتمد توفر المواعيد على أكاديميتك.",
+    faq_data_secure_q: "هل بياناتي آمنة؟",
+    faq_data_secure_a: "نعم. كوديسي يقدر خصوصية المستخدم ويستخدم طرقًا آمنة لحماية بيانات حسابك ومعلوماتك الشخصية.",
+    faq_forgot_password_q: "ماذا لو نسيت كلمة المرور الخاصة بي؟",
+    faq_forgot_password_a: "يمكنك النقر على 'هل نسيت كلمة المرور؟' في صفحة تسجيل الدخول. سنرسل لك رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني المسجل.",
+    faq_no_verification_email_q: "لم أستلم بريد التحقق الإلكتروني. ماذا أفعل؟",
+    faq_no_verification_email_a: "تحقق من مجلد البريد العشوائي. إذا لم يكن هناك، عد إلى صفحة تسجيل الدخول وانقر على 'إعادة إرسال بريد التحقق الإلكتروني.'",
   },
 };

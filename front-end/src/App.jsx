@@ -27,6 +27,7 @@ import CompletedAppointments from "./features/content/CompletedAppointments";
 import Recommendations from "./pages/Recommendations";
 import { TranslationProvider } from "./context/TranslationContext";
 import HelpCenter from "./pages/HelpCenter";
+import Faqs from "./pages/Faqs";
 
 function App() {
   return (
@@ -146,15 +147,14 @@ function App() {
                   }
                 />
                 <Route path="help" element={<HelpCenter />} />
+                <Route path="faqs" element={<Faqs />} />
               </Route>
+
               <Route path="roadmaps/:roadmapId" element={<Roadmap />} />
               <Route path="verify-email" element={<VerifyEmail />} />
-
-              <Route
-                path="/reset-password/:token"
-                element={<ResetPassword />}
-              ></Route>
+              <Route path="reset-password/:token" element={<ResetPassword />} />
             </Routes>
+
             <Toaster
               position="top-center"
               toastOptions={{
