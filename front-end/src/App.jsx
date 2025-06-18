@@ -30,6 +30,8 @@ import HelpCenter from "./pages/HelpCenter";
 import Faqs from "./pages/Faqs";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import AboutUs from "./pages/AboutUs";
+import Error from "./ui/Error";
 
 function App() {
   return (
