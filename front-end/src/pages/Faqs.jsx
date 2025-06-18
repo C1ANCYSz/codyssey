@@ -65,10 +65,10 @@ function Faqs() {
   ];
 
   return (
-    <div className="via-primary-800 from-primary-900 to-slate-950 bg-gradient-to-br text-white min-h-screen py-16 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black px-4 py-16 text-white">
       <div className="container mx-auto max-w-4xl">
         {/* Apply t function to the main title */}
-        <h1 className="text-4xl font-bold mb-10">{t("faq_page_title")}</h1>
+        <h1 className="mb-10 text-4xl font-bold">{t("faq_page_title")}</h1>
         <div className="space-y-6">
           {faqs.map((faq, index) => (
             <div key={index} className="border-b border-gray-600 pb-4">
