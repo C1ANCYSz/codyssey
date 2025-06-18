@@ -29,7 +29,8 @@ import { TranslationProvider } from "./context/TranslationContext";
 import HelpCenter from "./pages/HelpCenter";
 import Faqs from "./pages/Faqs";
 import TermsOfService from "./pages/TermsOfService";
-
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Error from "./ui/Error";
 function App() {
   return (
     <Router>
