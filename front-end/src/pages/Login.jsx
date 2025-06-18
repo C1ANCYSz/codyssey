@@ -30,7 +30,7 @@ const Login = () => {
   }
 
   return (
-    <div className="via-primary-800 from-primary-900 flex h-dvh w-screen items-center justify-center bg-gradient-to-br to-slate-950 px-2 lg:h-[calc(100dvh-80px)]">
+    <div className="from-primary-800 flex h-dvh w-screen items-center justify-center bg-gradient-to-br to-black px-2 lg:h-[calc(100dvh-80px)]">
       <div className="flex w-full max-w-6xl overflow-hidden rounded-3xl bg-white shadow-xl">
         <div className="w-full p-8 sm:p-12 md:w-1/2">
           <h1 className="text-primary-600 mb-2 text-5xl font-extrabold">

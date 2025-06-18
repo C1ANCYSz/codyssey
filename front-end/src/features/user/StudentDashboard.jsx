@@ -47,7 +47,7 @@ function StudentDashboard() {
   return (
     <>
       {!user.tookQuestionnaire && <StudentQuestionaire />}
-      <div className="from-footer-900 to-footer-800 min-h-screen bg-gradient-to-br">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black">
         <div className="flex h-screen">
           <div className="flex-1 p-8">
             <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -71,7 +71,7 @@ function StudentDashboard() {
               </div>
             </div>
 
-            <div className="[&::-webkit-scrollbar-thumb]:bg-primary-600 bg-footer-800/50 [&::-webkit-scrollbar-track]:bg-footer-700 h-[calc(100vh-12rem)] overflow-y-auto rounded-2xl p-6 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:rounded-full">
+            <div className="[&::-webkit-scrollbar-thumb]:bg-primary-600 [&::-webkit-scrollbar-track]:bg-footer-700 h-[calc(100vh-12rem)] overflow-y-auto rounded-2xl bg-gray-900/80 p-6 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:rounded-full">
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {filteredRoadmaps?.map((roadmap) => (
                   <Link
@@ -89,7 +89,7 @@ function StudentDashboard() {
                         <FaCheck className="text-white" />
                       </div>
                     )}
-                    <div className="bg-footer-900/90 absolute inset-0" />
+                    <div className="absolute inset-0 bg-gray-800/60" />
                     <div className="relative z-10">
                       <div className="mb-4 flex items-center gap-4">
                         <div className="aspect-square h-20 w-20 overflow-hidden rounded-lg">
