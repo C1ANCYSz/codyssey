@@ -43,7 +43,6 @@ const Login = () => {
               <input
                 type="email"
                 placeholder={t("your_email")}
-                defaultValue={"a7mdmo2mna7md@gmail.com"}
                 className="focus:border-primary-600 w-full rounded-md border-2 border-black px-4 py-3 text-lg focus:outline-none"
                 {...register("email", { required: true })}
               />
