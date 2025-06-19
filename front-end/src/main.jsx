@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorComponent from "./ui/Error.jsx";
-import { BrowserRouter } from "react-router-dom";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,13 +18,7 @@ const queryClient = new QueryClient({
   },
 });
 
-// Fixed ErrorBoundary usage:
-// 1. Use correct import for Error component (not destructured).
-// 2. Wrap BrowserRouter inside ErrorBoundary to catch routing errors.
-// 3. Pass resetErrorBoundary to Error component for retry.
-
 function fallbackRender({ error, resetErrorBoundary }) {
-  // Call resetErrorBoundary() to reset the error boundary and retry the render.
   return (
     <ErrorComponent
       error={error?.message || "Unknown error"}
