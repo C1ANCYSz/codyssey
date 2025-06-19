@@ -4,13 +4,13 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import ToggleLanguage from "./ToggleLanguage";
 import { useTranslation } from "../context/TranslationContext";
+import logo from "../assets/logo.png";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { t } = useTranslation();
 
-  // Handle scroll effect / تأثير التمرير
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -35,7 +35,7 @@ function Header() {
             onClick={() => setIsOpen(false)}
           >
             <img
-              src="/src/assets/logo.png"
+              src={logo}
               alt="Codyssey Logo"
               className="h-8 w-8 transition-all duration-300 group-hover:brightness-110 md:h-10 md:w-10"
             />
@@ -44,7 +44,6 @@ function Header() {
             </h1>
           </Link>
 
-          {/* Mobile Menu Button / زر القائمة للموبايل */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="rounded-lg bg-white/10 p-2 transition-colors hover:bg-white/20 md:hidden"
@@ -57,7 +56,6 @@ function Header() {
             )}
           </button>
 
-          {/* Mobile Menu / القائمة للموبايل */}
           <AnimatePresence>
             {isOpen && (
               <motion.div
@@ -92,7 +90,6 @@ function Header() {
             )}
           </AnimatePresence>
 
-          {/* Desktop Menu / القائمة للكمبيوتر */}
           <div className="hidden items-center gap-6 md:flex">
             <Link to="/login">
               <button className="rounded-lg px-6 py-2 font-medium text-white transition-colors hover:bg-white/10">

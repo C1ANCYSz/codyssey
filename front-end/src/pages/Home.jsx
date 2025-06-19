@@ -23,7 +23,6 @@ const Home = () => {
     return () => document.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -66,7 +65,6 @@ const Home = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 to-slate-950">
-      {/* Animated background shapes */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <div className="fixed top-1/4 -left-64 h-96 w-96 rounded-full bg-indigo-700/10 blur-3xl"></div>
         <div className="fixed -right-64 bottom-1/3 h-96 w-96 rounded-full bg-purple-700/10 blur-3xl"></div>
